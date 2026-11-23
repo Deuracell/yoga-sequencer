@@ -90,9 +90,9 @@ function distinctDrawings(entries: Entry[]): Entry[][] {
 
 /**
  * Poses in document order. Carbon copies are dropped; a label that names different
- * drawings is kept, numbered ' #n', and reported in `nameWarnings`.
+ * drawings is kept, numbered ' #n', and reported in `nameWarnings` (unless each has its own entry in the name book).
  */
-export function loadCatalog(root: Element, ruling: Ruling = loadRuling(root)): Catalog {
+export function loadCatalog(root: Element, ruling: Ruling = loadRuling(root), isNamed: (groupId: string) => boolean = () => false): Catalog {
   const byLabel = new Map<string, Entry[]>();
   const order = new Map<string, number>();
   topLevelGroups(root).forEach((group, index) => {
@@ -107,7 +107,7 @@ export function loadCatalog(root: Element, ruling: Ruling = loadRuling(root)): C
   const result: Catalog = { pictograms: [], droppedCopies: [], nameWarnings: [], withoutAnchor: [] };
   for (const [label, entries] of byLabel) {
     const clusters = distinctDrawings(entries);
-    if (clusters.length > 1) {
+    if (clusters.length > 1 && !clusters.every((c) => isNamed(c[0].groupId))) { // named poses are told apart by their id
       const ids = clusters.map((c) => c[0].groupId).join(", ");
       result.nameWarnings.push(`'${label}' names ${clusters.length} different drawings (${ids}); `
         + `numbered #1-#${clusters.length}. Give them distinct labels in the SVG.`);

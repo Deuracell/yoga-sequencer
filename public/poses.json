@@ -1,0 +1,410 @@
+{
+  "languages": {
+    "sa": "Sanskrit",
+    "en": "English",
+    "sv": "Svenska"
+  },
+  "poses": {
+    "setu-bandha-sarvangasana": {
+      "sa": "Setu Bandha Sarvangasana",
+      "en": "Bridge pose",
+      "sv": "Bryggan",
+      "aliases": [
+        "g11"
+      ]
+    },
+    "setu-bandha-sarvangasana-ankles": {
+      "sa": "Setu Bandha Sarvangasana",
+      "en": "Bridge pose",
+      "sv": "Bryggan",
+      "variant": {
+        "en": "holding the ankles",
+        "sv": "greppar om anklarna"
+      },
+      "aliases": [
+        "g15"
+      ]
+    },
+    "setu-bandha-sarvangasana-supported": {
+      "sa": "Setu Bandha Sarvangasana",
+      "en": "Bridge pose",
+      "sv": "Bryggan",
+      "variant": {
+        "en": "resting the buttocks on the hands",
+        "sv": "stöd under skinkorna med händerna"
+      },
+      "aliases": [
+        "g18"
+      ]
+    },
+    "eka-pada-setu-bandha-sarvangasana": {
+      "sa": "Eka Pada Setu Bandha Sarvangasana",
+      "en": "One-legged bridge pose",
+      "sv": "Bryggan på ett ben",
+      "variant": {
+        "en": "one leg raised",
+        "sv": "ett ben lyft"
+      },
+      "aliases": [
+        "g21"
+      ]
+    },
+    "supta-padangusthasana": {
+      "sa": "Supta Padangusthasana",
+      "en": "Reclining hand-to-big-toe pose",
+      "sv": "Liggande stortåsgrepp",
+      "aliases": [
+        "g25"
+      ],
+      "verify": true
+    },
+    "supta-matsyendrasana": {
+      "sa": "Supta Matsyendrasana",
+      "en": "Reclining spinal twist",
+      "sv": "Liggande ryggradsvridning",
+      "variant": {
+        "en": "one leg straight, arms wide",
+        "sv": "ett ben sträckt, armarna ut"
+      },
+      "aliases": [
+        "g34"
+      ],
+      "verify": true
+    },
+    "supta-kapotasana": {
+      "sa": "Supta Kapotasana",
+      "en": "Reclining pigeon pose",
+      "sv": "Liggande duva",
+      "also": [
+        "Sucirandhrasana",
+        "Thread the needle"
+      ],
+      "aliases": [
+        "g39"
+      ],
+      "verify": true
+    },
+    "balasana": {
+      "sa": "Balasana",
+      "en": "Child's pose",
+      "sv": "Barnets ställning",
+      "aliases": [
+        "g42"
+      ]
+    },
+    "adho-mukha-virasana": {
+      "sa": "Adho Mukha Virasana",
+      "en": "Downward-facing hero pose",
+      "sv": "Nedåtvänd hjälte",
+      "aliases": [
+        "g46"
+      ]
+    },
+    "apanasana": {
+      "sa": "Apanasana",
+      "en": "Knees-to-chest pose",
+      "sv": "Knän mot bröstet",
+      "aliases": [
+        "g7"
+      ]
+    },
+    "navasana": {
+      "sa": "Navasana",
+      "en": "Boat pose",
+      "sv": "Båten",
+      "aliases": [
+        "g48"
+      ]
+    },
+    "adho-mukha-svanasana": {
+      "sa": "Adho Mukha Svanasana",
+      "en": "Downward-facing dog",
+      "sv": "Nedåtvänd hund",
+      "also": [
+        "AMS"
+      ],
+      "aliases": [
+        "g48-2"
+      ]
+    },
+    "utthita-parsvakonasana": {
+      "sa": "Utthita Parsvakonasana",
+      "en": "Extended side angle pose",
+      "sv": "Utsträckt sidovinkel",
+      "variant": {
+        "en": "low elbow on the bent knee, hand pointing along the raised leg",
+        "sv": "nedre armbågen på det böjda knät, handen pekar längs det lyfta benet"
+      },
+      "aliases": [
+        "g53"
+      ]
+    },
+    "virabhadrasana-iii": {
+      "sa": "Virabhadrasana III",
+      "en": "Warrior III",
+      "sv": "Krigare III",
+      "also": [
+        "Vira 3"
+      ],
+      "aliases": [
+        "g56"
+      ]
+    },
+    "utthita-ashwa-sanchalananasana": {
+      "sa": "Utthita Ashwa Sanchalananasana",
+      "en": "High lunge",
+      "sv": "Högt utfall",
+      "also": [
+        "Alanasana",
+        "Ashta Chandrasana"
+      ],
+      "aliases": [
+        "g59"
+      ]
+    },
+    "ashwa-sanchalananasana": {
+      "sa": "Ashwa Sanchalananasana",
+      "en": "Low lunge",
+      "sv": "Lågt utfall",
+      "also": [
+        "Anjaneyasana"
+      ],
+      "aliases": [
+        "g60"
+      ]
+    },
+    "uttanasana": {
+      "sa": "Uttanasana",
+      "en": "Standing forward bend",
+      "sv": "Stående framåtfällning",
+      "aliases": [
+        "g61"
+      ]
+    },
+    "marjaryasana-bitilasana": {
+      "sa": "Marjaryasana–Bitilasana",
+      "en": "Cat-cow",
+      "sv": "Katt och ko",
+      "aliases": [
+        "g67"
+      ]
+    },
+    "kapotasana": {
+      "sa": "Kapotasana",
+      "en": "Dove pose",
+      "sv": "Duvan",
+      "also": [
+        "Eka Pada Rajakapotasana",
+        "Pigeon pose"
+      ],
+      "aliases": [
+        "g71"
+      ],
+      "verify": true
+    },
+    "garudasana": {
+      "sa": "Garudasana",
+      "en": "Eagle pose",
+      "sv": "Örnen",
+      "aliases": [
+        "g76"
+      ]
+    },
+    "vrksasana": {
+      "sa": "Vrksasana",
+      "en": "Tree pose",
+      "sv": "Trädet",
+      "aliases": [
+        "g85"
+      ]
+    },
+    "utkatasana": {
+      "sa": "Utkatasana",
+      "en": "Chair pose",
+      "sv": "Stolen",
+      "aliases": [
+        "g88"
+      ]
+    },
+    "ardha-chandrasana": {
+      "sa": "Ardha Chandrasana",
+      "en": "Half moon pose",
+      "sv": "Halvmånen",
+      "aliases": [
+        "g95"
+      ]
+    },
+    "virabhadrasana-ii": {
+      "sa": "Virabhadrasana II",
+      "en": "Warrior II",
+      "sv": "Krigare II",
+      "also": [
+        "Vira 2"
+      ],
+      "aliases": [
+        "g100"
+      ]
+    },
+    "viparita-virabhadrasana": {
+      "sa": "Viparita Virabhadrasana",
+      "en": "Reverse warrior",
+      "sv": "Omvänd krigare",
+      "also": [
+        "Solkrigare"
+      ],
+      "aliases": [
+        "g106"
+      ]
+    },
+    "virasana": {
+      "sa": "Virasana",
+      "en": "Hero pose",
+      "sv": "Hjälten",
+      "aliases": [
+        "g109"
+      ]
+    },
+    "virasana-garuda-arms": {
+      "sa": "Virasana",
+      "en": "Hero pose",
+      "sv": "Hjälten",
+      "variant": {
+        "en": "eagle arms, optional block under the buttocks",
+        "sv": "örnarmar, valfritt block under skinkorna"
+      },
+      "also": [
+        "Kneeling eagle arms"
+      ],
+      "aliases": [
+        "g119"
+      ],
+      "verify": true
+    },
+    "supta-baddha-konasana": {
+      "sa": "Supta Baddha Konasana",
+      "en": "Reclining bound angle pose",
+      "sv": "Liggande fjäril",
+      "aliases": [
+        "g115"
+      ]
+    },
+    "eka-pada-uttanapadasana-arms-overhead": {
+      "sa": "Eka Pada Uttanapadasana",
+      "en": "Reclining leg raise",
+      "sv": "Liggande benlyft",
+      "variant": {
+        "en": "arms stretched past the head, raised leg swept up and down",
+        "sv": "armarna sträckta förbi huvudet, det lyfta benet sveps upp och ner"
+      },
+      "also": [
+        "Iyengar-övning"
+      ],
+      "aliases": [
+        "g47"
+      ],
+      "verify": true
+    },
+    "sukhasana": {
+      "sa": "Sukhasana",
+      "en": "Easy pose",
+      "sv": "Enkel sittställning",
+      "aliases": [
+        "g128"
+      ]
+    },
+    "bhujangasana-arms-back": {
+      "sa": "Bhujangasana",
+      "en": "Cobra pose",
+      "sv": "Kobran",
+      "variant": {
+        "en": "arms pushed back, not supporting the chest",
+        "sv": "armarna sträcks bakåt och stöttar inte"
+      },
+      "aliases": [
+        "g173"
+      ],
+      "verify": true
+    },
+    "tadasana": {
+      "sa": "Tadasana",
+      "en": "Mountain pose",
+      "sv": "Berget",
+      "aliases": [
+        "g216"
+      ]
+    },
+    "kneeling-twist": {
+      "en": "Kneeling spinal twist",
+      "sv": "Knästående twist",
+      "aliases": [
+        "g129"
+      ],
+      "verify": true
+    },
+    "forearm-plank": {
+      "sa": "Makara Adho Mukha Svanasana",
+      "en": "Forearm plank",
+      "sv": "Underarmsplanka",
+      "also": [
+        "Chaturanga Dandasana on forearms",
+        "Dolphin plank"
+      ],
+      "aliases": [
+        "g134"
+      ],
+      "verify": true
+    },
+    "padmasana-cactus-arms": {
+      "sa": "Padmasana",
+      "en": "Lotus pose",
+      "sv": "Lotusställning",
+      "variant": {
+        "en": "cactus arms: palms forward, elbows pressed back, forearms up",
+        "sv": "kaktusarmar: handflatorna framåt, armbågarna bakåt, underarmarna upp"
+      },
+      "aliases": [
+        "g138"
+      ]
+    },
+    "padmasana-parvatasana": {
+      "sa": "Padmasana",
+      "en": "Lotus pose",
+      "sv": "Lotusställning",
+      "variant": {
+        "en": "hands interlocked overhead, pushing up",
+        "sv": "händerna hakade ovanför huvudet, tryck uppåt"
+      },
+      "also": [
+        "Parvatasana"
+      ],
+      "aliases": [
+        "g150"
+      ],
+      "verify": true
+    },
+    "padmasana-forward-arms": {
+      "sa": "Padmasana",
+      "en": "Lotus pose",
+      "sv": "Lotusställning",
+      "variant": {
+        "en": "leaning forward, arms pushed straight out, palms forward",
+        "sv": "framåtlutad, armarna rakt ut, handflatorna framåt"
+      },
+      "aliases": [
+        "g158"
+      ]
+    },
+    "padmasana-arms-up": {
+      "sa": "Padmasana",
+      "en": "Lotus pose",
+      "sv": "Lotusställning",
+      "variant": {
+        "en": "hands apart, reaching up to the ceiling",
+        "sv": "händerna isär, sträck upp mot taket"
+      },
+      "aliases": [
+        "g176"
+      ]
+    }
+  }
+}

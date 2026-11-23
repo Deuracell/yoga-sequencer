@@ -43,7 +43,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g11"
+       id="setu-bandha-sarvangasana"
        inkscape:label="Setu Bandha Sarvangasana"
        transform="translate(193.17958)">
       <path
@@ -88,7 +88,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g11_anchor"
+         id="setu-bandha-sarvangasana_anchor"
          inkscape:label="Anchor"
          cx="29.985399"
          cy="20.25"
@@ -96,7 +96,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g15"
+       id="setu-bandha-sarvangasana-ankles"
        inkscape:label="Setu Bandha Sarvangasana"
        transform="translate(232.83342)">
       <path
@@ -142,7 +142,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g15_anchor"
+         id="setu-bandha-sarvangasana-ankles_anchor"
          inkscape:label="Anchor"
          cx="52.2104"
          cy="20.2500"
@@ -150,7 +150,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g18"
+       id="setu-bandha-sarvangasana-supported"
        inkscape:label="Setu Bandha Sarvangasana"
        transform="translate(223.30842)">
       <path
@@ -188,7 +188,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g18_anchor"
+         id="setu-bandha-sarvangasana-supported_anchor"
          inkscape:label="Anchor"
          cx="29.9854"
          cy="20.2500"
@@ -196,7 +196,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g21"
+       id="eka-pada-setu-bandha-sarvangasana"
        inkscape:label="Setu Bandha Sarvangasana"
        transform="translate(285.75012)">
       <path
@@ -247,7 +247,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g21_anchor"
+         id="eka-pada-setu-bandha-sarvangasana_anchor"
          inkscape:label="Anchor"
          cx="29.9854"
          cy="20.2500"
@@ -255,7 +255,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g25"
+       id="supta-padangusthasana"
        inkscape:label="Supta Padangusthasana"
        transform="translate(-222.25008,53.178165)">
       <circle
@@ -303,7 +303,7 @@
          d="m 35.528379,50.530462 c 0,0 4.51154,-3.625345 8.217448,-11.03716"
          id="path27" />
       <circle
-         id="g25_anchor"
+         id="supta-padangusthasana_anchor"
          inkscape:label="Anchor"
          cx="29.9854"
          cy="22.0718"
@@ -311,7 +311,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g34"
+       id="supta-matsyendrasana"
        inkscape:label="Reclining spinal twist"
        transform="translate(269.87511,-55.033337)">
       <rect
@@ -370,7 +370,7 @@
          d="M 91.545822,79.441145 H 78.515098 c 0,0 -1.389061,-0.992188 -2.315101,0.463021"
          id="path34" />
       <circle
-         id="g34_anchor"
+         id="supta-matsyendrasana_anchor"
          inkscape:label="Anchor"
          cx="76.2000"
          cy="75.2833"
@@ -378,7 +378,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g39"
+       id="supta-kapotasana"
        inkscape:label="Reclining Pigeon Pose"
        transform="translate(-222.25008)">
       <path
@@ -429,7 +429,7 @@
          d="m 139.4935,99.675757 c 0,0 -4.30273,4.207193 -8.47606,5.567403"
          id="path39" />
       <circle
-         id="g39_anchor"
+         id="supta-kapotasana_anchor"
          inkscape:label="Anchor"
          cx="125.2354"
          cy="75.2500"
@@ -437,7 +437,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g42"
+       id="balasana"
        inkscape:label="Child's Pose"
        transform="translate(-375.47051,54.985833)">
       <g
@@ -480,7 +480,7 @@
          d="m 173.59482,105.26075 c 0,0 1.51124,-2.2997 2.1683,0"
          id="path42" />
       <circle
-         id="g42_anchor"
+         id="balasana_anchor"
          inkscape:label="Anchor"
          cx="172.2925"
          cy="75.2641"
@@ -488,7 +488,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g46"
+       id="adho-mukha-virasana"
        inkscape:label="Downward facing hero pose"
        transform="translate(-343.72049,54.985833)">
       <g
@@ -532,7 +532,7 @@
          d="m 173.59482,105.26075 c 0,0 1.51124,-2.2997 2.1683,0"
          id="path46" />
       <circle
-         id="g46_anchor"
+         id="adho-mukha-virasana_anchor"
          inkscape:label="Anchor"
          cx="172.2925"
          cy="75.2641"
@@ -540,7 +540,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g7"
+       id="apanasana"
        inkscape:label="Knees to chest pose - Apanasana"
        transform="translate(-186.85678)">
       <path
@@ -587,7 +587,7 @@
          id="path7"
          sodipodi:nodetypes="cc" />
       <circle
-         id="g7_anchor"
+         id="apanasana_anchor"
          inkscape:label="Anchor"
          cx="125.2354"
          cy="75.2500"
@@ -595,7 +595,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g48"
+       id="navasana"
        inkscape:label="Boat pose - Navasana"
        transform="rotate(53.932573,-34.387949,-116.93159)">
       <path
@@ -637,7 +637,7 @@
          id="path48"
          sodipodi:nodetypes="cc" />
       <circle
-         id="g48_anchor"
+         id="navasana_anchor"
          inkscape:label="Anchor"
          cx="114.6171"
          cy="98.3378"
@@ -645,7 +645,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g48-2"
+       id="adho-mukha-svanasana"
        inkscape:label="AMS"
        transform="rotate(-124.24176,26.418196,229.6251)">
       <path
@@ -682,7 +682,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g48-2_anchor"
+         id="adho-mukha-svanasana_anchor"
          inkscape:label="Anchor"
          cx="165.8853"
          cy="103.5901"
@@ -690,7 +690,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g53"
+       id="utthita-parsvakonasana"
        inkscape:label="Utthita Parsvakonasana 1"
        transform="translate(-222.25008)">
       <path
@@ -746,7 +746,7 @@
          d="m 156.92062,146.32672 -1.98782,5.84652 5.63605,-0.0701 c 0,0 0.98901,-0.50915 1.87088,0"
          id="path53" />
       <circle
-         id="g53_anchor"
+         id="utthita-parsvakonasana_anchor"
          inkscape:label="Anchor"
          cx="135.0056"
          cy="130.2499"
@@ -754,7 +754,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g56"
+       id="virabhadrasana-iii"
        transform="translate(-222.25008,14.920321)"
        inkscape:label="Vira 3">
       <path
@@ -799,7 +799,7 @@
          sodipodi:nodetypes="ccccccccscc"
          transform="translate(0,-14.920321)" />
       <circle
-         id="g56_anchor"
+         id="virabhadrasana-iii_anchor"
          inkscape:label="Anchor"
          cx="20.2406"
          cy="170.3296"
@@ -807,7 +807,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g59"
+       id="utthita-ashwa-sanchalananasana"
        inkscape:label="High lunge"
        transform="translate(-222.25008)">
       <path
@@ -853,7 +853,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g59_anchor"
+         id="utthita-ashwa-sanchalananasana_anchor"
          inkscape:label="Anchor"
          cx="112.7209"
          cy="185.2499"
@@ -861,7 +861,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g60"
+       id="ashwa-sanchalananasana"
        inkscape:label="Low lunge"
        transform="translate(-243.41676,11.752579)">
       <path
@@ -908,7 +908,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g60_anchor"
+         id="ashwa-sanchalananasana_anchor"
          inkscape:label="Anchor"
          cx="174.0798"
          cy="173.4973"
@@ -916,7 +916,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g61"
+       id="uttanasana"
        inkscape:label="Uttanasana"
        transform="translate(-222.25008)">
       <g
@@ -959,7 +959,7 @@
          id="path61"
          transform="rotate(-124.24176,137.54314,170.83938)" />
       <circle
-         id="g61_anchor"
+         id="uttanasana_anchor"
          inkscape:label="Anchor"
          cx="19.6443"
          cy="240.2499"
@@ -967,7 +967,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g67"
+       id="marjaryasana-bitilasana"
        inkscape:label="Katt och ko"
        transform="translate(-264.58344)">
       <g
@@ -1097,7 +1097,7 @@
         </g>
       </g>
       <circle
-         id="g67_anchor"
+         id="marjaryasana-bitilasana_anchor"
          inkscape:label="Anchor"
          cx="75.1256"
          cy="240.2499"
@@ -1105,7 +1105,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g71"
+       id="kapotasana"
        inkscape:label="Dove pose"
        transform="translate(-285.75012,66.781576)">
       <path
@@ -1150,7 +1150,7 @@
          d="m 190.11226,201.59712 2.57247,9.07381 1.96443,-8.51255 3.13373,0.14031"
          id="path72" />
       <circle
-         id="g71_anchor"
+         id="kapotasana_anchor"
          inkscape:label="Anchor"
          cx="172.4712"
          cy="173.4683"
@@ -1162,7 +1162,7 @@
        inkscape:label="Dove pose"
        transform="translate(-137.03166,11.683429)" />
     <g
-       id="g76"
+       id="garudasana"
        inkscape:label="Eagle pose"
        transform="rotate(90,6.2028814,-41.444171)">
       <path
@@ -1215,7 +1215,7 @@
          d="m 123.84625,100.60593 7.12322,-3.195828 v 7.893298 l 1.54015,-6.006611 -7.43125,-1.886691"
          id="path78" />
       <circle
-         id="g76_anchor"
+         id="garudasana_anchor"
          inkscape:label="Anchor"
          cx="122.8970"
          cy="107.0333"
@@ -1223,7 +1223,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g85"
+       id="vrksasana"
        inkscape:label="Tree Pose"
        transform="translate(-222.25008)">
       <path
@@ -1290,7 +1290,7 @@
          d="m 107.71537,90.176127 5.10104,2.464249 -10.10073,3.003304 c 0,0 1.19816,0.54509 0.30404,2.310233"
          id="path85" />
       <circle
-         id="g85_anchor"
+         id="vrksasana_anchor"
          inkscape:label="Anchor"
          cx="98.4930"
          cy="75.2500"
@@ -1298,7 +1298,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g88"
+       id="utkatasana"
        inkscape:label="Utkatasana"
        transform="translate(-222.25008)">
       <g
@@ -1338,7 +1338,7 @@
          d="m 184.70367,160.2544 h -3.86614 l 4.08395,-7.62339 -7.30825,-4.21942 11.83685,-20.50203"
          id="path86" />
       <circle
-         id="g88_anchor"
+         id="utkatasana_anchor"
          inkscape:label="Anchor"
          cx="177.6132"
          cy="130.2499"
@@ -1346,7 +1346,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g95"
+       id="ardha-chandrasana"
        inkscape:label="Ardha Chandrasana"
        transform="translate(-222.25008)">
       <path
@@ -1405,7 +1405,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g95_anchor"
+         id="ardha-chandrasana_anchor"
          inkscape:label="Anchor"
          cx="146.3148"
          cy="240.2499"
@@ -1413,7 +1413,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g100"
+       id="virabhadrasana-ii"
        inkscape:label="Vira 2"
        transform="translate(-222.25008)">
       <path
@@ -1465,7 +1465,7 @@
          d="M 35.472564,29.493985 H 23.959898 c 0,0 -1.435516,-0.523259 -3.388342,0"
          id="path100" />
       <circle
-         id="g100_anchor"
+         id="virabhadrasana-ii_anchor"
          inkscape:label="Anchor"
          cx="20.5678"
          cy="20.2500"
@@ -1473,7 +1473,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g106"
+       id="viparita-virabhadrasana"
        inkscape:label="Solkrigare"
        transform="translate(-179.91672)">
       <path
@@ -1530,7 +1530,7 @@
          d="M 30.633329,33.325072 33.24706,31.637038"
          id="path109" />
       <circle
-         id="g106_anchor"
+         id="viparita-virabhadrasana_anchor"
          inkscape:label="Anchor"
          cx="20.5678"
          cy="20.2500"
@@ -1538,7 +1538,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g109"
+       id="virasana"
        inkscape:label="Virasana"
        transform="translate(-222.25008)">
       <rect
@@ -1582,7 +1582,7 @@
          sodipodi:nodetypes="ccccccccc"
          transform="translate(-3.7041669,4.9624721e-4)" />
       <circle
-         id="g109_anchor"
+         id="virasana_anchor"
          inkscape:label="Anchor"
          cx="108.7277"
          cy="20.2500"
@@ -1590,7 +1590,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g119"
+       id="virasana-garuda-arms"
        inkscape:label="Eagle arms"
        transform="translate(-195.79173)">
       <rect
@@ -1639,7 +1639,7 @@
          id="path78-5"
          transform="translate(-26.458334)" />
       <circle
-         id="g119_anchor"
+         id="virasana-garuda-arms_anchor"
          inkscape:label="Anchor"
          cx="108.7277"
          cy="20.2500"
@@ -1647,7 +1647,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g115"
+       id="supta-baddha-konasana"
        inkscape:label="Supta Baddhakonasana"
        transform="translate(85.479403,-55.033336)">
       <path
@@ -1722,7 +1722,7 @@
            inkscape:label="Öga" />
       </g>
       <circle
-         id="g115_anchor"
+         id="supta-baddha-konasana_anchor"
          inkscape:label="Anchor"
          cx="-146.0500"
          cy="75.2833"
@@ -1730,7 +1730,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g47"
+       id="eka-pada-uttanapadasana-arms-overhead"
        transform="translate(204.48545,14.920321)"
        inkscape:label="Iyengar-övning">
       <rect
@@ -1834,7 +1834,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g128"
+       id="sukhasana"
        inkscape:label="Sukasana - Easy Pose"
        transform="translate(204.84368,48.590663)">
       <path
@@ -1912,13 +1912,13 @@
       <circle
          id="circle123"
          inkscape:label="Anchor"
-         cx="18.081316"
-         cy="20.25"
+         cx="18.326050"
+         cy="27.622337"
          r="0.0099999998"
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g173"
+       id="bhujangasana-arms-back"
        inkscape:label="Bhujangasana - Armar bakom"
        transform="translate(237.55039,0.06310299)">
       <path
@@ -1979,7 +1979,7 @@
          transform="translate(23.822741,-0.06310299)" />
     </g>
     <g
-       id="g216"
+       id="tadasana"
        inkscape:label="Tadasana"
        transform="translate(387.58647,0.25000051)">
       <path
@@ -2054,7 +2054,7 @@
          style="fill:none;stroke:none" />
     </g>
     <g
-       id="g129"
+       id="kneeling-twist"
        inkscape:label="Knästående twist"
        transform="translate(194.57015,0.36764948)">
       <g
@@ -2088,7 +2088,7 @@
          inkscape:label="Öga" />
     </g>
     <g
-       id="g134"
+       id="forearm-plank"
        inkscape:label="Underarmsplanka"
        transform="translate(250.28817,55.567218)">
       <g
@@ -2139,7 +2139,7 @@
          id="path133" />
     </g>
     <g
-       id="g138"
+       id="padmasana-cactus-arms"
        inkscape:label="Sittande kaktusarmar"
        transform="translate(349.92434,50.361842)">
       <path
@@ -2279,7 +2279,7 @@
       </g>
     </g>
     <g
-       id="g150"
+       id="padmasana-parvatasana"
        inkscape:label="Sittande Sträck och förläng "
        transform="translate(369.71828,50.361842)">
       <path
@@ -2378,7 +2378,7 @@
       </g>
     </g>
     <g
-       id="g158"
+       id="padmasana-forward-arms"
        inkscape:label="Sittande Trycka ifrån en vägg"
        transform="translate(223.2778,-95.509854)">
       <g
@@ -2433,7 +2433,7 @@
          sodipodi:nodetypes="ccc" />
     </g>
     <g
-       id="g176"
+       id="padmasana-arms-up"
        inkscape:label="Sittande armar upp mot taket"
        transform="translate(252.30974,-95.509854)">
       <g

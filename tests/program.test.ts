@@ -9,8 +9,8 @@ beforeEach(() => { program = new ProgramBuilder(library); });
 
 describe("ProgramBuilder", () => {
   it("lists poses and finds them by name", () => {
-    expect(program.names.length).toBeGreaterThan(30);
-    expect(program.names).toContain("Tree Pose");
+    expect(program.poseNames.length).toBeGreaterThan(30);
+    expect(program.poseNames).toContain("Tree Pose");
   });
 
   it("adds, moves, removes and undoes", () => {
@@ -52,7 +52,7 @@ describe("ProgramBuilder", () => {
   });
 
   it("adds pages and shrinks (auto scale) when the program is long", () => {
-    for (let i = 0; i < 80; i++) program.add(program.names[i % program.names.length]);
+    for (let i = 0; i < 80; i++) program.add(program.poseNames[i % program.poseNames.length]);
     expect(program.pages).toBeGreaterThan(1);
     expect(program.drawnSetup.scale).toBeGreaterThanOrEqual(0.7 - 1e-9);
     program.setPage({ auto: false, scale: 1 });
@@ -89,7 +89,7 @@ describe("ProgramBuilder", () => {
   });
 
   it("keeps the chosen auto setting but remembers the requested scale", () => {
-    for (let i = 0; i < 80; i++) program.add(program.names[i % program.names.length]);
+    for (let i = 0; i < 80; i++) program.add(program.poseNames[i % program.poseNames.length]);
     const doc = program.render.document;
     expect(doc).toContain('"auto":true');
   });
@@ -110,7 +110,7 @@ describe("ProgramBuilder", () => {
   });
 
   it("produces one stand-alone file per page", () => {
-    for (let i = 0; i < 80; i++) program.add(program.names[i % program.names.length]);
+    for (let i = 0; i < 80; i++) program.add(program.poseNames[i % program.poseNames.length]);
     const file = program.render.pageFile(1);
     expect(file).not.toContain("yoga-builder-program");
     expect(file).not.toContain("data-index");
@@ -129,7 +129,7 @@ describe("ProgramBuilder", () => {
     program.add("Tree Pose");
     expect(() => program.setLibrary("<svg xmlns='http://www.w3.org/2000/svg'><g id='layer1'/></svg>")).toThrow();
     expect(program.chosen.length).toBe(1);
-    expect(program.names.length).toBeGreaterThan(30);
+    expect(program.poseNames.length).toBeGreaterThan(30);
   });
 
   it("sanitises the file name", () => {

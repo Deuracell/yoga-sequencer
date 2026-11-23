@@ -26,6 +26,11 @@ input[type=search] { width:100%; padding:8px 10px; font:inherit; color:inherit; 
 .tile { position:relative; display:block; height:0; padding:100% 0 0; min-width:0; background:#fff; color:#000;
         border:1px solid var(--line); border-radius:8px; cursor:pointer; text-align:center; font:inherit; overflow:hidden; }
 .tile .in { position:absolute; inset:6px; display:flex; flex-direction:column; gap:4px; }
+.tile .lbl { flex:none; max-height:6em; overflow:hidden; }
+.tile .lbl span { display:block; max-height:none; }
+.tile .lbl .var { font-size:10.5px; line-height:1.2; color:#555; }
+.tile .lbl .sa { font-size:10.5px; line-height:1.2; font-style:italic; color:#555; }
+.tile.verify::after { content:"?"; position:absolute; top:3px; right:5px; font:bold 11px/1 sans-serif; color:#b07a00; }
 .tile:hover, .tile:focus-visible { border-color:var(--accent); outline:2px solid var(--accent); outline-offset:-1px; }
 .tile svg { flex:1 1 0; min-height:0; width:100%; display:block; }  /* the drawing takes what the label leaves */
 .tile span { flex:none; font-size:12px; line-height:1.25; max-height:3.75em; overflow:hidden; }

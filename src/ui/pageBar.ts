@@ -14,7 +14,7 @@ export function renderPageBar() {
   input("auto").checked = setup.auto;
   input("scale").disabled = input("scaleNum").disabled = setup.auto;
   if (document.activeElement !== input("scaleNum")) input("scaleNum").value = String(+shown.toFixed(2));
-  input("scale").value = String(shown);
+  if (document.activeElement !== input("scale")) input("scale").value = String(shown); // not under the user's thumb
   const atMin = setup.auto && drawnSetup.scale <= AUTO_MIN_SCALE + 1e-6 && pages > 1;
   $("fit").textContent = `${ruling.rows.length} row${ruling.rows.length === 1 ? "" : "s"}/page`
     + (atMin ? " · at minimum scale, pages added" : "");
@@ -29,8 +29,18 @@ export function wirePageBar() {
   paper.onchange = () => set({ preset: paper.value });
   input("auto").onchange = () => set({ auto: input("auto").checked });
   $("orient").onclick = () => set({ landscape: !ui.builder.setup.landscape });
-  input("scale").oninput = () => { input("scaleNum").value = input("scale").value; };
-  input("scale").onchange = () => set({ scale: +input("scale").value });
+  // The page follows the slider while it is dragged: at most one redraw per animation frame.
+  let frame = 0;
+  const applySlider = () => { frame = 0; set({ scale: +input("scale").value }); };
+  input("scale").step = "0.01";
+  input("scale").oninput = () => {
+    input("scaleNum").value = input("scale").value;
+    if (!frame) frame = requestAnimationFrame(applySlider);
+  };
+  input("scale").onchange = () => { // released: make sure the final position is what is drawn
+    if (frame) cancelAnimationFrame(frame);
+    applySlider();
+  };
   input("scaleNum").onchange = () => set({ scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, +input("scaleNum").value || 1)) });
   input("scaleNum").onkeydown = (e) => { if (e.key === "Enter") input("scaleNum").blur(); };
 }

@@ -10,6 +10,10 @@
 <section>
   <div class="bar"><input id="q" type="search" placeholder="Filter poses…" autofocus></div>
   <div class="bar lib">
+    <label for="lang" class="muted">Names</label><select id="lang" class="act"></select>
+    <label class="inline muted" id="showSaLabel" title="Show the Sanskrit name under the pose name"><input id="showSa" type="checkbox" checked> Sanskrit</label>
+  </div>
+  <div class="bar lib">
     <button class="act" id="libLoad" title="Use your own library SVG (same layout as the bundled one: poses as groups in layer1, reference lines labelled Referenssträck)">Load library SVG…</button>
     <button class="act" id="libReset" title="Go back to the bundled library" hidden>Use bundled library</button>
     <input id="libFile" type="file" accept=".svg,image/svg+xml" hidden>

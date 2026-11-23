@@ -1,24 +1,39 @@
 /** Switching between the bundled pose library and one loaded from the user's own SVG. */
+import { NameBook, parsePoseNames } from "../core/poseNames";
 import { $ } from "./dom";
 import { readFile } from "./files";
 import { loadTiles, renderGrid } from "./gallery";
 import { saveLibrary } from "./storage";
 import { commit, select, ui } from "./state";
 
-export const BUNDLED = `${import.meta.env.BASE_URL}Yoga_source.svg`;
-let bundledText = "";
+const BASE = import.meta.env.BASE_URL;
+let bundled: { svg: string; names: NameBook } | null = null;
 
-export async function fetchBundled(): Promise<string> {
-  if (!bundledText) {
-    const response = await fetch(BUNDLED);
-    if (!response.ok) throw new Error(`could not load the bundled library (${response.status})`);
-    bundledText = await response.text();
-  }
-  return bundledText;
+async function get(file: string): Promise<Response> {
+  const response = await fetch(`${BASE}${file}`);
+  if (!response.ok) throw new Error(`could not load ${file} (${response.status})`);
+  return response;
 }
 
-export function useLibrary(text: string, custom: boolean) {
-  commit(() => { select(null); ui.builder.setLibrary(text); });
+/** The bundled pose library and its names. A missing or broken names file only costs the translations. */
+export async function fetchBundled(): Promise<{ svg: string; names: NameBook }> {
+  if (!bundled) {
+    const svg = await (await get("Yoga_source.svg")).text();
+    let names = new NameBook();
+    try { names = new NameBook(parsePoseNames(await (await get("poses.json")).text())); } catch { /* labels are used instead */ }
+    bundled = { svg, names };
+  }
+  return bundled;
+}
+
+export async function useBundledLibrary() {
+  const { svg, names } = await fetchBundled();
+  useLibrary(svg, false, names);
+}
+
+/** A custom library has no names file, so its poses are shown under their SVG labels. */
+export function useLibrary(text: string, custom: boolean, names = new NameBook()) {
+  commit(() => { select(null); ui.builder.setLibrary(text, names); });
   ui.customLibrary = custom;
   loadTiles();
   renderGrid();
@@ -40,7 +55,7 @@ export function wireLibrary(onError: (message: string) => void) {
     }
   };
   $("libReset").onclick = async () => {
-    useLibrary(await fetchBundled(), false);
+    await useBundledLibrary();
     saveLibrary(null);
   };
 }

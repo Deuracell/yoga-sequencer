@@ -1,5 +1,6 @@
 /** The pictogram program being built: poses, notes, spacing, page setup, undo, and the rendered pages. */
 import { loadCatalog, type Catalog, type Pictogram } from "./catalog";
+import { NameBook } from "./poseNames";
 import { History } from "./history";
 import { EPSILON, layoutRows, slacks, type Placement } from "./layout";
 import { WHERE, type Where } from "./notes";
@@ -34,15 +35,20 @@ export class ProgramBuilder {
   private rendered: RenderedDocument | null = null;
   private drawn: PageSetup = this.setup;
 
-  constructor(librarySvg: string, readonly gap = 8.0) {
-    this.setLibrary(librarySvg);
+  names = new NameBook();
+  unnamed: string[] = []; // poses in the library that the name book does not know
+
+  constructor(librarySvg: string, names: NameBook = new NameBook(), readonly gap = 8.0) {
+    this.setLibrary(librarySvg, names);
   }
 
   /** (Re)read a library SVG: ruling, pictograms, carbon copies and name warnings. Throws, changing nothing, if unusable. */
-  setLibrary(text: string) {
+  setLibrary(text: string, names: NameBook = new NameBook()) {
     const source = parseSvg(text);
-    const found = loadCatalog(source, loadRuling(source));
+    const found = loadCatalog(source, loadRuling(source), (id) => names.has(id));
     this.source = source;
+    this.names = names;
+    this.unnamed = names.data ? found.pictograms.filter((p) => !names.has(p.groupId)).map((p) => p.name) : [];
     this.catalog = new Map(found.pictograms.map((p) => [p.name, p]));
     this.droppedCopies = found.droppedCopies;
     this.withoutAnchor = found.withoutAnchor;
@@ -58,7 +64,7 @@ export class ProgramBuilder {
     this.refresh();
   }
 
-  get names(): string[] { return [...this.catalog.keys()]; }
+  get poseNames(): string[] { return [...this.catalog.keys()]; }
   get canUndo(): boolean { return this.history.canUndo; }
   get canRedo(): boolean { return this.history.canRedo; }
   get pages(): number { return Math.max(0, ...this.placements.map((p) => p.page)) + 1; }
@@ -215,10 +221,11 @@ export class ProgramBuilder {
 
   clear() { this.edit(() => { this.chosen = []; }); }
 
-  /** The catalog pictogram a saved group came from: by id, else by its label. */
+  /** The catalog pictogram a saved group came from: by id, else by an id it used to have, else by its label. */
   private resolveSaved(groupId: string, label: string): Pictogram | null {
     const all = [...this.catalog.values()];
-    const byId = all.find((p) => p.groupId === groupId);
+    const id = this.names.current(groupId) ?? groupId;
+    const byId = all.find((p) => p.groupId === id);
     if (byId) return byId;
     const sameLabel = all.filter((p) => label && (p.name === label || p.name.startsWith(`${label} #`)));
     return sameLabel.length === 1 ? sameLabel[0] : null;

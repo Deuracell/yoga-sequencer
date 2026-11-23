@@ -2,15 +2,16 @@
 import { thumbnailSvg } from "../core/thumbnails";
 import { $, svgEl } from "./dom";
 import { dropTarget, toUser } from "./dropTarget";
+import { displayName } from "./language";
 import { commit, select, ui } from "./state";
 
-interface Tile { name: string; svg: string }
+interface Tile { name: string; groupId: string; svg: string }
 let tiles: Tile[] = [];
 let suppressClick = false;
 
 export function loadTiles() {
   const { builder } = ui;
-  tiles = [...builder.catalog.values()].map((p, i) => ({ name: p.name, svg: thumbnailSvg(builder.sourceGroup(p.groupId)!, p, i) }));
+  tiles = [...builder.catalog.values()].map((p, i) => ({ name: p.name, groupId: p.groupId, svg: thumbnailSvg(builder.sourceGroup(p.groupId)!, p, i) }));
 }
 
 export function renderGrid() {
@@ -18,15 +19,24 @@ export function renderGrid() {
   const grid = $("grid");
   grid.replaceChildren();
   for (const item of tiles) {
-    if (q && !item.name.toLowerCase().includes(q)) continue;
+    if (q && !ui.builder.names.searchText(item.groupId, item.name).includes(q)) continue;
+    const shown = displayName(item.groupId, item.name);
     const b = document.createElement("button");
-    b.className = "tile";
-    b.title = `Add ${item.name}`;
+    b.className = shown.verify ? "tile verify" : "tile";
+    b.title = `Add ${shown.primary}${shown.variant ? ` (${shown.variant})` : ""}`
+      + (shown.verify ? "\n? name still to be verified" : "");
     const inner = document.createElement("div");
     inner.className = "in";
     inner.innerHTML = item.svg;
-    const label = document.createElement("span");
-    label.textContent = item.name;
+    const label = document.createElement("div");
+    label.className = "lbl";
+    for (const [cls, text] of [["", shown.primary], ["var", shown.variant], ["sa", shown.sanskrit]]) {
+      if (!text) continue;
+      const line = document.createElement("span");
+      line.className = cls;
+      line.textContent = text;
+      label.append(line);
+    }
     inner.append(label);
     b.append(inner);
     b.onclick = () => { if (!suppressClick) commit(() => ui.builder.add(item.name)); };
