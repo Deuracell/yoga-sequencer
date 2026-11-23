@@ -1,4 +1,5 @@
 /** Paper size, orientation and scale, and the triplets of reference lines they give. */
+import { DEFAULT_LABELS, labelsFromJson, type LabelSetup } from "./labelSetup";
 
 // name: [label, short side mm, long side mm]
 export const PRESETS: Record<string, [string, number, number]> = {
@@ -28,12 +29,15 @@ export interface PageSetup {
   readonly scale: number;
   /** Pick the scale from the program (the largest that needs the fewest pages) instead. */
   readonly auto: boolean;
+  /** Whether pose names are printed with the shapes. */
+  readonly labels: LabelSetup;
 }
 
-export function makeSetup(preset = DEFAULT_PRESET, landscape = false, scale = 1.0, auto = true): PageSetup {
+export function makeSetup(preset = DEFAULT_PRESET, landscape = false, scale = 1.0, auto = true,
+  labels: LabelSetup = DEFAULT_LABELS): PageSetup {
   if (!(preset in PRESETS)) throw new Error(`unknown paper size '${preset}'`);
   if (!(scale >= MIN_SCALE && scale <= MAX_SCALE)) throw new Error(`scale must be between ${MIN_SCALE} and ${MAX_SCALE}`);
-  return { preset, landscape, scale, auto };
+  return { preset, landscape, scale, auto, labels };
 }
 
 export const pageWidth = (s: PageSetup) => (s.landscape ? PRESETS[s.preset][2] : PRESETS[s.preset][1]);
@@ -42,7 +46,8 @@ export const pageHeight = (s: PageSetup) => (s.landscape ? PRESETS[s.preset][1] 
 /** Reads a saved setup; files from before auto-scale keep their scale. */
 export function setupFromJson(data: Record<string, unknown> | null | undefined): PageSetup {
   const d = data ?? {};
-  return makeSetup(String(d.preset ?? DEFAULT_PRESET), Boolean(d.landscape), Number(d.scale ?? 1.0), Boolean(d.auto ?? false));
+  return makeSetup(String(d.preset ?? DEFAULT_PRESET), Boolean(d.landscape), Number(d.scale ?? 1.0), Boolean(d.auto ?? false),
+    labelsFromJson(d.labels));
 }
 
 export interface Row { top: number; bottom: number }

@@ -2,11 +2,16 @@
 import { moveSelected, nudge, redo, removeSelected, toggleBreak, undo } from "./actions";
 import { $, isTextField } from "./dom";
 import { renderGrid } from "./gallery";
+import { openHelp } from "./help";
 import { openNote } from "./noteBox";
 import { select, ui } from "./state";
 
 export function wireKeyboard() {
   const q = $("q") as HTMLInputElement;
+
+  document.addEventListener("keydown", (e) => { // ? opens the help
+    if (e.key === "?" && !isTextField(e.target) && !e.ctrlKey && !e.metaKey) { e.preventDefault(); openHelp(); }
+  });
 
   document.addEventListener("keydown", (e) => { // Ctrl/Cmd+A selects every shape
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "a" && !isTextField(e.target) && ui.builder.chosen.length) {

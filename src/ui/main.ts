@@ -6,42 +6,25 @@ import { loadTiles, renderGrid } from "./gallery";
 import { language, setLanguage } from "./language";
 import { wireKeyboard } from "./keyboard";
 import { fetchBundled, wireLibrary } from "./library";
+import { renderNamesBar, wireNamesBar } from "./namesBar";
 import { renderPageBar, wirePageBar } from "./pageBar";
 import { renderPreview } from "./preview";
 import { autosave, savedLibrary, savedProgram } from "./storage";
-import { onChange, ui } from "./state";
+import { onChange, onSelection, ui } from "./state";
 import { wireSplitter } from "./splitter";
 import { renderToolbar, wireToolbar } from "./toolbar";
-
-let extraNotes: string[] = [];
-
-function showMessage(message: string) {
-  extraNotes = [message];
-  renderWarnings();
-}
-
-function renderWarnings() {
-  const { builder } = ui;
-  const notes = [...extraNotes, ...builder.warnings, ...builder.openNotes].map((w) => `⚠ ${w}`);
-  const unverified = builder.names.toVerify().length;
-  if (unverified) notes.push(`${unverified} pose names are marked “?” (best guesses, still to be verified in poses.json).`);
-  if (builder.unnamed.length) notes.push(`No entry in poses.json for: ${builder.unnamed.join(", ")}`);
-  if (ui.customLibrary && builder.droppedCopies.length) notes.push(`Ignored ${builder.droppedCopies.length} duplicate drawings in the library.`);
-  if (ui.customLibrary && builder.withoutAnchor.length) {
-    notes.push(`${builder.withoutAnchor.length} pose(s) have no anchor point; their height is guessed from the nearest row.`);
-  }
-  const warn = $("warn");
-  warn.hidden = !notes.length;
-  warn.replaceChildren(...notes.flatMap((n, i) => [...(i ? [document.createElement("br")] : []), document.createTextNode(n)]));
-  $("libReset").hidden = !ui.customLibrary;
-  $("libInfo").textContent = `${builder.catalog.size} poses · ${ui.customLibrary ? "your library" : "bundled library"}`;
-}
+import { wireHelp } from "./help";
+import { renderHint } from "./hint";
+import { wireMenu } from "./menu";
+import { clearMessage, renderWarnings, showMessage, wireWarnings } from "./warnings";
 
 function render() {
   renderToolbar();
   renderPageBar();
+  renderNamesBar();
   renderWarnings();
   renderPreview();
+  renderHint();
   autosave();
 }
 
@@ -85,18 +68,26 @@ async function start() {
   }
 
   wirePageBar();
+  wireNamesBar();
   wireToolbar(showMessage);
   wireLibrary(showMessage);
   wireKeyboard();
   wireSplitter();
-  onChange(() => { extraNotes = []; render(); });
+  wireHelp();
+  wireWarnings();
+  for (const [button, panel] of [["fileBtn", "#fileBtn + .menu"], ["libMore", "#libMore + .menu"], ["namesBtn", "#printOpts"]]) {
+    wireMenu($(button), document.querySelector<HTMLElement>(panel)!);
+  }
+  onSelection(renderHint);
+  onChange(() => { clearMessage(); render(); });
   loadTiles();
   renderGrid();
   render();
 }
 
 start().catch((error) => {
-  const warn = $("warn");
-  warn.hidden = false;
-  warn.textContent = `Could not start: ${(error as Error).message}`;
+  $("warn").hidden = false;
+  $("warnToggle").textContent = "⚠ could not start";
+  $("warnList").hidden = false;
+  $("warnList").textContent = (error as Error).message;
 });

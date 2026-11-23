@@ -4,6 +4,7 @@ import { NameBook } from "./poseNames";
 import { History } from "./history";
 import { EPSILON, layoutRows, slacks, type Placement } from "./layout";
 import { WHERE, type Where } from "./notes";
+import type { LabelSetup } from "./labelSetup";
 import { AUTO_MAX_SCALE, AUTO_MIN_SCALE, AUTO_STEP, buildRuling, makeSetup, type PageRuling, type PageSetup } from "./pageSetup";
 import { renderDocument, type RenderedDocument } from "./pageWriter";
 import { readProgram, type SavedProgram } from "./projectIo";
@@ -190,10 +191,11 @@ export class ProgramBuilder {
   }
 
   /** Change paper size, orientation or scale; the program flows onto the new page. Not part of undo. */
-  setPage(change: { preset?: string; landscape?: boolean; scale?: number; auto?: boolean }) {
+  setPage(change: { preset?: string; landscape?: boolean; scale?: number; auto?: boolean; labels?: Partial<LabelSetup> }) {
     const c = this.setup;
     this.setup = makeSetup(change.preset ?? c.preset, change.landscape ?? c.landscape,
-      change.scale === undefined ? c.scale : Math.round(change.scale * 1000) / 1000, change.auto ?? c.auto);
+      change.scale === undefined ? c.scale : Math.round(change.scale * 1000) / 1000, change.auto ?? c.auto,
+      { ...c.labels, ...change.labels });
     this.refresh();
   }
 
@@ -283,7 +285,7 @@ export class ProgramBuilder {
 
   /** The drawn pages, built on first use after each change. */
   get render(): RenderedDocument {
-    this.rendered ??= renderDocument(this.source, this.placements, this.drawn, this.setup);
+    this.rendered ??= renderDocument(this.source, this.placements, this.drawn, this.setup, this.names);
     return this.rendered;
   }
 }

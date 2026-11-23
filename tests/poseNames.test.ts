@@ -16,10 +16,26 @@ describe("pose names", () => {
     for (const id of Object.keys(names.data!.poses)) expect(ids.has(id), `${id} is not in the SVG`).toBe(true);
   });
 
+  it("gives every pose a name of its own in each language (no identical names for different drawings)", () => {
+    for (const lang of ["sa", "en", "sv"] as const) {
+      const seen = new Map<string, string>();
+      for (const [id, entry] of Object.entries(names.data!.poses)) {
+        const name = entry[lang];
+        if (!name) continue; // only the Sanskrit name may be absent
+        expect(seen.get(name), `"${name}" (${lang}) is used by both ${seen.get(name)} and ${id}`).toBeUndefined();
+        seen.set(name, id);
+      }
+    }
+    for (const [id, entry] of Object.entries(names.data!.poses)) {
+      expect(entry.en, `${id} needs an English name`).toBeTruthy();
+      expect(entry.sv, `${id} needs a Swedish name`).toBeTruthy();
+    }
+  });
+
   it("keeps the four bridge drawings apart without number suffixes or warnings", () => {
     expect(program.warnings).toEqual([]);
     expect(names.display("setu-bandha-sarvangasana-ankles", "x", "en", true))
-      .toMatchObject({ primary: "Bridge pose", variant: "holding the ankles", sanskrit: "Setu Bandha Sarvangasana" });
+      .toMatchObject({ primary: "Bridge pose, hands to ankles", sanskrit: "Setu Bandha Sarvangasana, hands to ankles" });
   });
 
   it("falls back from the chosen language to English, Sanskrit and the label", () => {

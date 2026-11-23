@@ -14,25 +14,18 @@
       ]
     },
     "setu-bandha-sarvangasana-ankles": {
-      "sa": "Setu Bandha Sarvangasana",
-      "en": "Bridge pose",
-      "sv": "Bryggan",
-      "variant": {
-        "en": "holding the ankles",
-        "sv": "greppar om anklarna"
-      },
+      "sa": "Setu Bandha Sarvangasana, hands to ankles",
+      "en": "Bridge pose, hands to ankles",
+      "sv": "Bryggan, händerna vid anklarna",
       "aliases": [
         "g15"
-      ]
+      ],
+      "verify": true
     },
     "setu-bandha-sarvangasana-supported": {
-      "sa": "Setu Bandha Sarvangasana",
-      "en": "Bridge pose",
-      "sv": "Bryggan",
-      "variant": {
-        "en": "resting the buttocks on the hands",
-        "sv": "stöd under skinkorna med händerna"
-      },
+      "sa": "Salamba Setu Bandha Sarvangasana",
+      "en": "Supported bridge pose",
+      "sv": "Understödd brygga",
       "aliases": [
         "g18"
       ]
@@ -41,10 +34,6 @@
       "sa": "Eka Pada Setu Bandha Sarvangasana",
       "en": "One-legged bridge pose",
       "sv": "Bryggan på ett ben",
-      "variant": {
-        "en": "one leg raised",
-        "sv": "ett ben lyft"
-      },
       "aliases": [
         "g21"
       ]
@@ -62,10 +51,6 @@
       "sa": "Supta Matsyendrasana",
       "en": "Reclining spinal twist",
       "sv": "Liggande ryggradsvridning",
-      "variant": {
-        "en": "one leg straight, arms wide",
-        "sv": "ett ben sträckt, armarna ut"
-      },
       "aliases": [
         "g34"
       ],
@@ -131,10 +116,6 @@
       "sa": "Utthita Parsvakonasana",
       "en": "Extended side angle pose",
       "sv": "Utsträckt sidovinkel",
-      "variant": {
-        "en": "low elbow on the bent knee, hand pointing along the raised leg",
-        "sv": "nedre armbågen på det böjda knät, handen pekar längs det lyfta benet"
-      },
       "aliases": [
         "g53"
       ]
@@ -265,13 +246,9 @@
       ]
     },
     "virasana-garuda-arms": {
-      "sa": "Virasana",
-      "en": "Hero pose",
-      "sv": "Hjälten",
-      "variant": {
-        "en": "eagle arms, optional block under the buttocks",
-        "sv": "örnarmar, valfritt block under skinkorna"
-      },
+      "sa": "Virasana, Garudasana arms",
+      "en": "Hero pose, eagle arms",
+      "sv": "Hjälten, örnarmar",
       "also": [
         "Kneeling eagle arms"
       ],
@@ -292,10 +269,6 @@
       "sa": "Eka Pada Uttanapadasana",
       "en": "Reclining leg raise",
       "sv": "Liggande benlyft",
-      "variant": {
-        "en": "arms stretched past the head, raised leg swept up and down",
-        "sv": "armarna sträckta förbi huvudet, det lyfta benet sveps upp och ner"
-      },
       "also": [
         "Iyengar-övning"
       ],
@@ -313,13 +286,9 @@
       ]
     },
     "bhujangasana-arms-back": {
-      "sa": "Bhujangasana",
-      "en": "Cobra pose",
-      "sv": "Kobran",
-      "variant": {
-        "en": "arms pushed back, not supporting the chest",
-        "sv": "armarna sträcks bakåt och stöttar inte"
-      },
+      "sa": "Bhujangasana, arms back",
+      "en": "Cobra pose, arms back",
+      "sv": "Kobran, armarna bakåt",
       "aliases": [
         "g173"
       ],
@@ -355,25 +324,18 @@
       "verify": true
     },
     "padmasana-cactus-arms": {
-      "sa": "Padmasana",
-      "en": "Lotus pose",
-      "sv": "Lotusställning",
-      "variant": {
-        "en": "cactus arms: palms forward, elbows pressed back, forearms up",
-        "sv": "kaktusarmar: handflatorna framåt, armbågarna bakåt, underarmarna upp"
-      },
+      "sa": "Padmasana, cactus arms",
+      "en": "Lotus pose, cactus arms",
+      "sv": "Lotus, kaktusarmar",
       "aliases": [
         "g138"
-      ]
+      ],
+      "verify": true
     },
     "padmasana-parvatasana": {
-      "sa": "Padmasana",
-      "en": "Lotus pose",
-      "sv": "Lotusställning",
-      "variant": {
-        "en": "hands interlocked overhead, pushing up",
-        "sv": "händerna hakade ovanför huvudet, tryck uppåt"
-      },
+      "sa": "Parvatasana in Padmasana",
+      "en": "Lotus pose, interlocked hands up",
+      "sv": "Lotus, hakade händer upp",
       "also": [
         "Parvatasana"
       ],
@@ -383,28 +345,22 @@
       "verify": true
     },
     "padmasana-forward-arms": {
-      "sa": "Padmasana",
-      "en": "Lotus pose",
-      "sv": "Lotusställning",
-      "variant": {
-        "en": "leaning forward, arms pushed straight out, palms forward",
-        "sv": "framåtlutad, armarna rakt ut, handflatorna framåt"
-      },
+      "sa": "Padmasana, forward bend",
+      "en": "Lotus pose, forward bend",
+      "sv": "Lotus, framåtfällning",
       "aliases": [
         "g158"
-      ]
+      ],
+      "verify": true
     },
     "padmasana-arms-up": {
-      "sa": "Padmasana",
-      "en": "Lotus pose",
-      "sv": "Lotusställning",
-      "variant": {
-        "en": "hands apart, reaching up to the ceiling",
-        "sv": "händerna isär, sträck upp mot taket"
-      },
+      "sa": "Urdhva Hasta Padmasana",
+      "en": "Lotus pose, arms up",
+      "sv": "Lotus, armarna upp",
       "aliases": [
         "g176"
-      ]
+      ],
+      "verify": true
     }
   }
 }

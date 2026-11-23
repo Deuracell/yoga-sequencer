@@ -23,14 +23,14 @@ export function renderGrid() {
     const shown = displayName(item.groupId, item.name);
     const b = document.createElement("button");
     b.className = shown.verify ? "tile verify" : "tile";
-    b.title = `Add ${shown.primary}${shown.variant ? ` (${shown.variant})` : ""}`
+    b.title = `Add ${shown.primary}`
       + (shown.verify ? "\n? name still to be verified" : "");
     const inner = document.createElement("div");
     inner.className = "in";
     inner.innerHTML = item.svg;
     const label = document.createElement("div");
     label.className = "lbl";
-    for (const [cls, text] of [["", shown.primary], ["var", shown.variant], ["sa", shown.sanskrit]]) {
+    for (const [cls, text] of [["", shown.primary], ["sa", shown.sanskrit]]) {
       if (!text) continue;
       const line = document.createElement("span");
       line.className = cls;

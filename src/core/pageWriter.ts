@@ -1,6 +1,8 @@
 /** Writes placed pictograms into a copy of the source SVG: one multi-page document, plus per-page views. */
 import type { Placement } from "./layout";
-import { noteElement, WHERE } from "./notes";
+import { nameBlock } from "./labels";
+import { noteAnchor, noteElement, textBlock, WHERE, type Where } from "./notes";
+import type { NameBook } from "./poseNames";
 import { LINES_PER_ROW, buildRuling, pageHeight, pageWidth, type PageSetup } from "./pageSetup";
 import type { Slot } from "./slot";
 import { INKSCAPE_NS, METADATA_ID, REFERENCE_LABEL, SODIPODI_NS, SVG_NS, children, labelOf } from "./svgNames";
@@ -29,7 +31,7 @@ function metadataElement(doc: Document, slots: Slot[], record: PageSetup): Eleme
   node.textContent = JSON.stringify({
     poses: slots.map((s) => s.pictogram.groupId),
     notes: slots.map((s) => ({ above: s.above, below: s.below, spacing: s.spacing, break: s.breakAfter })),
-    page: { preset: record.preset, landscape: record.landscape, scale: record.scale, auto: record.auto },
+    page: { preset: record.preset, landscape: record.landscape, scale: record.scale, auto: record.auto, labels: record.labels },
   });
   return node;
 }
@@ -94,13 +96,38 @@ function addPages(root: Element, pages: number, setup: PageSetup) {
   }
 }
 
+/**
+ * The printed name of the shape at `index`, fitted to the room between its neighbours' midpoints.
+ * `reach` is how far from the shape the block extends (so a note can start beyond it).
+ */
+function nameElements(doc: Document, placements: Placement[], index: number, names: NameBook, setup: PageSetup,
+  pageOffset: number, id: string): { element: Element; reach: number } | null {
+  const where = setup.labels.where as Where;
+  const p = placements[index];
+  const display = names.display(p.pictogram.groupId, p.pictogram.name, setup.labels.lang,
+    setup.labels.sanskrit && setup.labels.lang !== "sa");
+  const sameRow = (q?: Placement) => q && q.page === p.page && q.y === p.y ? q : undefined;
+  const prev = sameRow(placements[index - 1]), next = sameRow(placements[index + 1]);
+  const room = 8 * p.scale; // what a row end may use beyond its shape
+  const left = prev ? (prev.x + prev.width + p.x) / 2 : p.x - room;
+  const right = next ? (p.x + p.width + next.x) / 2 : p.x + p.width + room;
+  const centre = p.x + p.width / 2;
+  const width = Math.max(p.width, 2 * Math.min(centre - left, right - centre));
+  const block = nameBlock(display, width, p.scale);
+  if (!block) return null;
+  const [x, edge] = noteAnchor(p, where);
+  const element = textBlock(doc, where, block.lines, x + pageOffset, edge, block.size, block.leading, id, `Name ${where}`);
+  return { element, reach: block.height + 1.2 * p.scale };
+}
+
 const serialize = (root: Element) => `<?xml version="1.0" encoding="UTF-8"?>\n${new XMLSerializer().serializeToString(root)}`;
 
 /**
  * `drawn` is what is drawn (with the scale actually used); `record` is what the file remembers
  * for reopening (the same, unless the scale was chosen automatically).
  */
-export function renderDocument(source: Element, placements: Placement[], drawn: PageSetup, record: PageSetup = drawn): RenderedDocument {
+export function renderDocument(source: Element, placements: Placement[], drawn: PageSetup, record: PageSetup = drawn,
+  names: NameBook): RenderedDocument {
   const step = pageStep(drawn);
   const pages = Math.max(0, ...placements.map((p) => p.page)) + 1;
   const root = source.cloneNode(true) as Element;
@@ -127,7 +154,10 @@ export function renderDocument(source: Element, placements: Placement[], drawn: 
       groups.push(group);
       for (const where of WHERE) {
         const text = placed.slot[where];
-        if (text) layer.appendChild(noteElement(doc, placed, where, text, page * step, `note-${where}-p${page}n${n}`, index));
+        const name = where === drawn.labels.where ? nameElements(doc, placements, index, names, drawn, page * step, `name-${where}-p${page}n${n}`) : null;
+        if (name) layer.appendChild(name.element);
+        // a note on the same side as the printed name goes just beyond it
+        if (text) layer.appendChild(noteElement(doc, placed, where, text, page * step, `note-${where}-p${page}n${n}`, index, name?.reach ?? 0));
       }
       n++;
     });

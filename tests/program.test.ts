@@ -84,7 +84,7 @@ describe("ProgramBuilder", () => {
     expect(again.chosen[1].below).toBe("Hold");
     expect(again.chosen[0].spacing).toBeCloseTo(4);
     expect(again.chosen[1].breakAfter).toBe(true);
-    expect(again.setup).toEqual({ preset: "a5", landscape: true, scale: 0.8, auto: false });
+    expect(again.setup).toMatchObject({ preset: "a5", landscape: true, scale: 0.8, auto: false });
     expect(again.render.document).toBe(text); // byte-identical: nothing drifts on a save/open cycle
   });
 

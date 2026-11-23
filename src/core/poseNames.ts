@@ -4,7 +4,6 @@ export interface PoseEntry {
   sa?: string; // Sanskrit; absent for exercises that have no traditional name
   en?: string;
   sv?: string;
-  variant?: Record<string, string>; // what distinguishes this drawing from the others of the same pose
   also?: string[]; // other names, searchable only
   aliases?: string[]; // earlier ids, so programs saved before a rename still open
   verify?: boolean; // the name is a best guess still to be checked
@@ -17,7 +16,6 @@ export interface PoseNameData {
 
 export interface DisplayName {
   primary: string;
-  variant: string;
   sanskrit: string; // only when it differs from the primary and was asked for
   verify: boolean;
 }
@@ -51,13 +49,12 @@ export class NameBook {
   /** What to show for a pose: the chosen language, falling back to English, Sanskrit, then the SVG label. */
   display(id: string, label: string, lang: string, withSanskrit: boolean): DisplayName {
     const entry = this.data?.poses[id];
-    if (!entry) return { primary: label, variant: "", sanskrit: "", verify: false };
+    if (!entry) return { primary: label, sanskrit: "", verify: false };
     const pick = (e: Record<string, string | undefined>) =>
       [lang, ...FALLBACKS].map((l) => e[l]).find((v) => !!v);
     const primary = pick(entry as Record<string, string | undefined>) ?? label;
     return {
       primary,
-      variant: pick(entry.variant ?? {}) ?? "",
       sanskrit: withSanskrit && entry.sa && entry.sa !== primary ? entry.sa : "",
       verify: !!entry.verify,
     };
@@ -67,7 +64,7 @@ export class NameBook {
   searchText(id: string, label: string): string {
     const e = this.data?.poses[id];
     if (!e) return label.toLowerCase();
-    return [label, e.sa, e.en, e.sv, ...(e.also ?? []), ...Object.values(e.variant ?? {})]
+    return [label, e.sa, e.en, e.sv, ...(e.also ?? [])]
       .filter(Boolean).join(" ").toLowerCase();
   }
 
