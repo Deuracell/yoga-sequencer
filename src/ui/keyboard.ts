@@ -1,5 +1,5 @@
 /** Keyboard shortcuts for the page: selection, nudging, notes, undo, and type-to-filter. */
-import { moveSelected, nudge, redo, removeSelected, toggleBreak, undo } from "./actions";
+import { moveSelected, nudge, redo, removeSelected, toggleBreak, toggleBreakBefore, undo } from "./actions";
 import { $, isTextField } from "./dom";
 import { renderGrid } from "./gallery";
 import { openHelp } from "./help";
@@ -28,7 +28,7 @@ export function wireKeyboard() {
     else if (["+", "=", "-", "_"].includes(e.key) && !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
       nudge(e.key === "+" || e.key === "=" ? 1 : -1); // mm right of the shape
-    } else if (e.key === "Enter" && !e.ctrlKey && !e.metaKey) { e.preventDefault(); toggleBreak(); }
+    } else if (e.key === "Enter" && !e.ctrlKey && !e.metaKey) { e.preventDefault(); if (e.shiftKey) toggleBreakBefore(); else toggleBreak(); }
     else if ((e.key === "1" || e.key === "2") && ui.picks.size === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
       e.preventDefault();
       openNote(e.key === "1" ? "above" : "below");

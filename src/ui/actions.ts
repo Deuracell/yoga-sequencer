@@ -9,6 +9,17 @@ export function toggleBreak() {
   commit(() => ui.builder.setBreak(picked(), !items.every((a) => a.brk))); // all broken already: clear them
 }
 
+/** Shift+Enter: a new row *before* the selection, which is a break after the shape in front of it. */
+export function toggleBreakBefore() {
+  const targets = picked().filter((i) => i > 0).map((i) => i - 1);
+  if (!targets.length) return;
+  const all = targets.every((i) => ui.builder.chosen[i].breakAfter);
+  commit(() => ui.builder.setBreak(targets, !all)); // all broken already: clear them
+}
+
+/** Remove the forced break after one shape (from the marker at the end of its row). */
+export const removeBreakAfter = (index: number) => commit(() => ui.builder.setBreak([index], false));
+
 export function removeSelected() {
   const indices = picked();
   if (!indices.length) return;

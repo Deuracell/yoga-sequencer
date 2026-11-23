@@ -1,8 +1,8 @@
 /** The page preview: draws the current page, its hit boxes, and the buttons on the selected shape. */
-import { nudge, removeSelected, resetSpacing, toggleBreak } from "./actions";
+import { nudge, removeBreakAfter, removeSelected, resetSpacing, toggleBreak } from "./actions";
 import { $, svgEl } from "./dom";
 import { PAD, startDrag, startMarquee } from "./dragShape";
-import { layoutInfo } from "./layoutInfo";
+import { layoutInfo, type LayoutItem } from "./layoutInfo";
 import { extendSelection, onSelection, pickedItems, ui } from "./state";
 
 export function renderPreview() {
@@ -43,14 +43,29 @@ function addOverlay() {
       else startDrag(e, it.i);
     });
     overlay.append(r);
-    if (it.brk) { // a mark after a shape that ends its row on purpose (preview only, not in the file)
-      const mark = svgEl("text", { x: offset + it.x + it.w + 1.2, y: it.y + 4, "font-size": 4, fill: "#2f6fdb" });
-      mark.style.pointerEvents = "none";
-      mark.textContent = "↵";
-      overlay.append(mark);
-    }
+    if (it.brk) overlay.append(breakMarker(it, offset));
   }
   drawButtons();
+}
+
+/**
+ * The line break after a shape that ends its row on purpose, as a small button at the end of the row
+ * (preview only, not in the file). Clicking it removes the break.
+ */
+function breakMarker(it: LayoutItem, offset: number): SVGGElement {
+  const px = ui.svg!.getScreenCTM()?.a || 1;
+  const size = 16 / px; // mm, about 16 px on screen
+  const x = Math.min(offset + it.x + it.w + 1.5, offset + ui.layout.pageWidth - size - 0.5);
+  const group = svgEl("g", { class: "btn brk", transform: `translate(${x},${it.y - size / 2})` });
+  const box = svgEl("rect", { width: size, height: size, rx: size * 0.2 });
+  const text = svgEl("text", { x: size / 2, y: size * 0.74, "font-size": size * 0.75 });
+  text.textContent = "\u21B5";
+  const tip = svgEl("title");
+  tip.textContent = "Line break here (Enter). Click to remove it.";
+  group.append(tip, box, text);
+  group.addEventListener("pointerdown", (e) => { e.stopPropagation(); e.preventDefault(); });
+  group.addEventListener("click", (e) => { e.stopPropagation(); removeBreakAfter(it.i); });
+  return group;
 }
 
 function syncSelection() {
@@ -85,7 +100,7 @@ function drawButtons() {
     ["−", `Narrow the space to the right${each} (−); stops where outlines touch`, () => nudge(-1), noGap],
     ["↺", many ? "Reset the space to the right on all selected shapes"
       : `Reset the space to the right (now ${it.spacing >= 0 ? "+" : ""}${it.spacing.toFixed(1)} mm)`, resetSpacing, noChange],
-    ["↵", broken ? `Remove the line break${each} (Enter)` : `Start a new row after ${many ? "these shapes" : "this shape"} (Enter)`,
+    ["↵", broken ? `Remove the line break after ${many ? "these shapes" : "this shape"} (Enter)` : `Start a new row after ${many ? "these shapes" : "this shape"} (Enter; Shift+Enter starts one before)`,
       toggleBreak, false, broken ? "on" : ""],
     ["×", many ? `Delete the ${ui.picks.size} selected shapes (Delete)` : "Delete this shape (Delete)", removeSelected, false, "del"],
   ];
