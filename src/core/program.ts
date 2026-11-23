@@ -27,7 +27,7 @@ export class ProgramBuilder {
   withoutAnchor: string[] = [];
   warnings: string[] = []; // label clashes found in the library
   openNotes: string[] = []; // problems met while opening a saved program or reloading the library
-  name = "Program";
+  name = "Sequence";
   chosen: Slot[] = [];
   setup: PageSetup = makeSetup();
   ruling!: PageRuling;
@@ -60,7 +60,7 @@ export class ProgramBuilder {
       if (!pictogram) { lost.push(slot.pictogram.name); return []; }
       return [{ ...slot, pictogram }];
     });
-    this.openNotes = lost.length ? [`No longer in the library, removed from the program: ${lost.join(", ")}`] : [];
+    this.openNotes = lost.length ? [`No longer in the library, removed from the sequence: ${lost.join(", ")}`] : [];
     this.history.clear(); // old snapshots may refer to poses that just changed or went away
     this.refresh();
   }
@@ -243,7 +243,7 @@ export class ProgramBuilder {
     }
     this.openNotes = missing.length
       ? [`Could not match ${missing.length} saved pose(s) to the library and left them out: ${missing.join(", ")}`] : [];
-    this.name = fileName.replace(/\.svg$/i, "").replace(/_\d{4}-\d{2}-\d{2}_\d{6}(-\d+)?$/, "") || "Program";
+    this.name = fileName.replace(/\.svg$/i, "").replace(/_\d{4}-\d{2}-\d{2}_\d{6}(-\d+)?$/, "") || "Sequence";
     this.chosen = chosen;
     this.setup = saved.setup;
     this.history.clear(); // a freshly opened program starts with a clean history

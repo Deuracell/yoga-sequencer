@@ -20,13 +20,13 @@ export function renderToolbar() {
 /** Open the text of a saved program, after asking if it would replace work. Returns an error message or null. */
 export function importProgram(text: string, fileName: string): string | null {
   const { builder } = ui;
-  if (builder.chosen.length && !confirm(`Replace the current program with ${fileName}?\n\nExport the current one first if you want to keep it.`)) return null;
+  if (builder.chosen.length && !confirm(`Replace the current sequence with ${fileName}?\n\nExport the current one first if you want to keep it.`)) return null;
   try {
     select(null);
     commit(() => { builder.openProgram(text, fileName); ui.page = 0; });
     return null;
   } catch {
-    return `${fileName} is not a program saved by this tool.`;
+    return `${fileName} is not a sequence saved by this tool.`;
   }
 }
 
@@ -57,7 +57,7 @@ export function wireToolbar(onError: (message: string) => void) {
 
   button("save").onclick = () => {
     download(stamped(ui.builder.name), ui.builder.render.document);
-    $("out").textContent = `Downloaded ${ui.builder.name}.svg (the whole program, ${ui.builder.pages} page${ui.builder.pages === 1 ? "" : "s"}).`;
+    $("out").textContent = `Downloaded ${ui.builder.name}.svg (the whole sequence, ${ui.builder.pages} page${ui.builder.pages === 1 ? "" : "s"}).`;
   };
   button("savePage").onclick = () => {
     const page = ui.page;
@@ -69,7 +69,7 @@ export function wireToolbar(onError: (message: string) => void) {
   button("prev").onclick = () => { ui.page = Math.max(0, ui.page - 1); changed(); };
   button("next").onclick = () => { ui.page = Math.min(ui.builder.pages - 1, ui.page + 1); changed(); };
 
-  // Dropping an SVG anywhere on the page opens it as a program.
+  // Dropping an SVG anywhere on the page opens it as a sequence.
   const hasFile = (e: DragEvent) => Array.from(e.dataTransfer?.types ?? []).includes("Files");
   document.addEventListener("dragover", (e) => { if (hasFile(e)) { e.preventDefault(); document.body.classList.add("dropping"); } });
   document.addEventListener("dragleave", (e) => { if (!e.relatedTarget) document.body.classList.remove("dropping"); });

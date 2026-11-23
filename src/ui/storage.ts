@@ -19,6 +19,6 @@ export function savedProgram(): { name: string; program: SavedProgram } | null {
   if (!text) return null;
   try {
     const data = JSON.parse(text);
-    return { name: String(data.name ?? "Program"), program: { poses: data.poses ?? [], setup: setupFromJson(data.setup) } };
+    return { name: String(data.name ?? "Sequence"), program: { poses: data.poses ?? [], setup: setupFromJson(data.setup) } };
   } catch { return null; }
 }

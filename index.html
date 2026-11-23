@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yoga Program Builder</title>
+<title>Yoga Sequence Builder</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='7' r='4' fill='none' stroke='%232f6fdb' stroke-width='2'/%3E%3Cpath d='M4 28 L16 13 L28 28' fill='none' stroke='%232f6fdb' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -35,7 +35,7 @@
 <div id="split" role="separator" aria-orientation="vertical" tabindex="0" title="Drag to resize (double-click to reset)"></div>
 <section id="right">
   <div class="bar toolbar" id="topbar">
-    <input id="fname" type="text" spellcheck="false" placeholder="Program" aria-label="File name"><span class="muted">.svg</span>
+    <input id="fname" type="text" spellcheck="false" placeholder="Sequence" aria-label="File name"><span class="muted">.svg</span>
     <button class="act iconbtn" id="undo" title="Undo (Ctrl+Z)" aria-label="Undo">
       <svg class="ico" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
     </button>
@@ -45,14 +45,14 @@
     <div class="pop">
       <button class="act" id="fileBtn" aria-haspopup="menu" aria-expanded="false">File &#9662;</button>
       <div class="menu" role="menu" hidden>
-        <button role="menuitem" id="open" title="Open a program SVG saved by this tool (or drop it on the page)">Import SVG&hellip;</button>
-        <button role="menuitem" id="save" title="Download the whole program as one SVG (opens in Inkscape, and can be imported again)">Export SVG</button>
+        <button role="menuitem" id="open" title="Open a sequence SVG saved by this tool (or drop it on the page)">Import SVG&hellip;</button>
+        <button role="menuitem" id="save" title="Download the whole sequence as one SVG (opens in Inkscape, and can be imported again)">Export SVG</button>
         <button role="menuitem" id="savePage" title="Download only the page shown as its own SVG">Export this page (SVG)</button>
         <hr>
         <button role="menuitem" id="clear" class="danger" title="Remove every shape from the sequence">Clear sequence&hellip;</button>
       </div>
     </div>
-    <button class="act primary" id="print" title="Print the program, or choose “Save as PDF” in the print dialog">
+    <button class="act primary" id="print" title="Print the sequence, or choose “Save as PDF” in the print dialog">
       <svg class="ico" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg> Print / PDF
     </button>
     <button class="act iconbtn" id="helpBtn" title="Help (?)" aria-label="Help">
@@ -63,7 +63,7 @@
   <div class="bar toolbar" id="pagebar">
     <select id="paper" class="act" title="Paper size" aria-label="Paper size"></select>
     <button class="act iconbtn" id="orient" aria-label="Switch between portrait and landscape"></button>
-    <label class="inline muted" title="Pick the scale from the program: as large as possible, never above 1, never below the readable minimum; beyond that new pages are added"><input id="auto" type="checkbox"> Auto</label>
+    <label class="inline muted" title="Pick the scale from the sequence: as large as possible, never above 1, never below the readable minimum; beyond that new pages are added"><input id="auto" type="checkbox"> Auto</label>
     <input id="scale" type="range" step="0.01" aria-label="Scale" style="flex:1;min-width:60px" title="Shrink or enlarge everything on the page, so more rows and shapes fit. Hold Shift while dragging for fine control.">
     <input id="scaleNum" type="number" step="0.05" class="act" style="width:4.2em" aria-label="Scale" title="Scale">
     <div class="pop">
@@ -90,7 +90,7 @@
   </div>
   <div id="preview"></div>
   <div class="hint" id="hint"></div>
-  <div class="muted" id="out">Your program is kept in this browser automatically. Use File &rsaquo; Export SVG to save it as a file.</div>
+  <div class="muted" id="out">Your sequence is kept in this browser automatically. Use File &rsaquo; Export SVG to save it as a file.</div>
 </section>
 
 <dialog id="help" aria-labelledby="helpTitle">
@@ -123,7 +123,7 @@
       <tr><td><kbd>?</kbd></td><td>this help</td></tr>
       </tbody>
     </table>
-    <p class="muted">Files: <strong>File &rsaquo; Export SVG</strong> saves the whole program as one multi-page SVG that opens in Inkscape and can be imported again (or dropped onto the page). <strong>Print / PDF</strong> prints every page at its real size; choose “Save as PDF” in the print dialog to get a PDF. Your program is also kept in this browser automatically.</p>
+    <p class="muted">Files: <strong>File &rsaquo; Export SVG</strong> saves the whole sequence as one multi-page SVG that opens in Inkscape and can be imported again (or dropped onto the page). <strong>Print / PDF</strong> prints every page at its real size; choose “Save as PDF” in the print dialog to get a PDF. Your sequence is also kept in this browser automatically.</p>
   </div>
 </dialog>
 <div id="printRoot" aria-hidden="true"></div>

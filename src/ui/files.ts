@@ -9,7 +9,7 @@ export function download(name: string, text: string, type = "image/svg+xml") {
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
-/** Program.svg -> Program_2026-10-26_143005.svg */
+/** Sequence.svg -> Sequence_2026-10-26_143005.svg */
 export function stamped(name: string, suffix = ""): string {
   const d = new Date(), p = (n: number) => String(n).padStart(2, "0");
   return `${name}${suffix}_${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}.svg`;

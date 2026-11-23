@@ -28,7 +28,7 @@ const SUFFIX = /-p\d+n\d+$/; // added to ids when a pictogram is placed on a pag
 export function readProgram(text: string): SavedProgram {
   const root = parseSvg(text);
   const layer = children(root, "g").find((g) => g.getAttribute("id") === "layer1");
-  if (!layer) throw new Error("not a program saved by this tool");
+  if (!layer) throw new Error("not a sequence saved by this tool");
   const placed = children(layer, "g").map((g): [string, string] => [(g.getAttribute("id") ?? "").replace(SUFFIX, ""), labelOf(g)]);
 
   for (const node of Array.from(root.getElementsByTagNameNS(SVG_NS, "metadata"))) {

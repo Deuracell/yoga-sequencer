@@ -1,6 +1,6 @@
 # Yoga Sequencer
 
-Build a printed yoga program from a library of stick-figure pictograms. A TypeScript port of the
+Build a printed yoga sequence from a library of stick-figure pictograms. A TypeScript port of the
 Python `yoga_builder` app; it runs entirely in the browser, so it can be hosted as a GitHub Page.
 
 ## Using it
@@ -12,14 +12,14 @@ Python `yoga_builder` app; it runs entirely in the browser, so it can be hosted 
   where outlines would touch), `Enter` forces a new (centred) row, `1` / `2` add text above / below.
   Undo/redo with Ctrl+Z / Ctrl+Y.
 - **Paper** size, orientation and scale (or Auto, which picks the largest readable scale for the fewest pages). The scale slider updates the page while you drag; hold Shift for ten times finer control.
-- **Print options ▸ Pose names** puts each pose's name above or below its shape, in the language you choose, optionally with an italic Sanskrit line. Names are fitted to the room between neighbouring shapes (long ones wrap or shrink). A free-text note on the same side goes just beyond the name. The setting is saved with the program and is off by default.
+- **Print options ▸ Pose names** puts each pose's name above or below its shape, in the language you choose, optionally with an italic Sanskrit line. Names are fitted to the room between neighbouring shapes (long ones wrap or shrink). A free-text note on the same side goes just beyond the name. The setting is saved with the sequence and is off by default.
 - **Pose names** are shown in the library in your chosen language (see `public/poses.json`, keyed by the pose's group id in the SVG; poses without an entry fall back to their SVG label).
-- **File ▸ Export SVG** downloads the whole program as one multi-page SVG (pages side by side, opens in
-  Inkscape). It embeds the program, so **File ▸ Import SVG…** (or dropping the file on the page) restores it
+- **File ▸ Export SVG** downloads the whole sequence as one multi-page SVG (pages side by side, opens in
+  Inkscape). It embeds the sequence, so **File ▸ Import SVG…** (or dropping the file on the page) restores it
   exactly, including files saved by the Python app. **File ▸ Export this page** saves just the page shown. **File ▸ Clear sequence…** empties it (undoable).
 - **Print / PDF** prints every page at its real paper size; choose “Save as PDF” in the print dialog
   for a PDF. The dotted guide lines can be left out.
-- The program is remembered in the browser (localStorage) between visits.
+- The sequence is remembered in the browser (localStorage) between visits.
 - **Library ⋯ ▸ Load library SVG…** swaps in your own library. It needs the same layout as `public/Yoga_source.svg`:
   poses are groups directly under `layer1` (labelled with the pose name), and a group labelled
   `Referenssträck` holds the triplets of reference lines the poses are drawn against.
