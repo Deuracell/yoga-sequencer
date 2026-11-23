@@ -40,7 +40,7 @@ export function wireToolbar(onError: (message: string) => void) {
   button("clear").onclick = () => {
     const n = ui.builder.chosen.length;
     if (!n) return;
-    if (!confirm(`Remove all ${n} shape${n === 1 ? "" : "s"} from the program?\n\nYou can bring them back with Undo (Ctrl+Z).`)) return;
+    if (!confirm(`Remove all ${n} shape${n === 1 ? "" : "s"} from the sequence?\n\nYou can bring them back with Undo (Ctrl+Z).`)) return;
     select(null);
     commit(() => ui.builder.clear());
   };

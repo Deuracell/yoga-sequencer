@@ -16,7 +16,7 @@ Python `yoga_builder` app; it runs entirely in the browser, so it can be hosted 
 - **Pose names** are shown in the library in your chosen language (see `public/poses.json`, keyed by the pose's group id in the SVG; poses without an entry fall back to their SVG label).
 - **File ▸ Export SVG** downloads the whole program as one multi-page SVG (pages side by side, opens in
   Inkscape). It embeds the program, so **File ▸ Import SVG…** (or dropping the file on the page) restores it
-  exactly, including files saved by the Python app. **File ▸ Export this page** saves just the page shown. **File ▸ Clear program…** empties it (undoable).
+  exactly, including files saved by the Python app. **File ▸ Export this page** saves just the page shown. **File ▸ Clear sequence…** empties it (undoable).
 - **Print / PDF** prints every page at its real paper size; choose “Save as PDF” in the print dialog
   for a PDF. The dotted guide lines can be left out.
 - The program is remembered in the browser (localStorage) between visits.
