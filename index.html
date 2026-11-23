@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yoga Program Builder</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='7' r='4' fill='none' stroke='%232f6fdb' stroke-width='2'/%3E%3Cpath d='M4 28 L16 13 L28 28' fill='none' stroke='%232f6fdb' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<section>
+  <div class="bar"><input id="q" type="search" placeholder="Filter poses…" autofocus></div>
+  <div class="bar lib">
+    <button class="act" id="libLoad" title="Use your own library SVG (same layout as the bundled one: poses as groups in layer1, reference lines labelled Referenssträck)">Load library SVG…</button>
+    <button class="act" id="libReset" title="Go back to the bundled library" hidden>Use bundled library</button>
+    <input id="libFile" type="file" accept=".svg,image/svg+xml" hidden>
+    <span class="muted" id="libInfo"></span>
+  </div>
+  <div id="grid"></div>
+  <div id="warn" hidden></div>
+</section>
+<div id="split" role="separator" aria-orientation="vertical" tabindex="0" title="Drag to resize (double-click to reset)"></div>
+<section>
+  <div class="bar"><label for="fname" class="muted">File name</label><input id="fname" type="text" spellcheck="false" placeholder="Program"><span class="muted">.svg</span></div>
+  <div class="bar toolbar" id="pagebar">
+    <label for="paper" class="muted">Paper</label><select id="paper" class="act"></select>
+    <button class="act" id="orient" title="Switch between portrait and landscape"></button>
+    <label for="scale" class="muted">Scale</label>
+    <label class="muted" title="Pick the scale from the program: as large as possible, never above 1, never below the readable minimum; beyond that new pages are added"><input id="auto" type="checkbox"> Auto</label>
+    <input id="scale" type="range" step="0.05" style="flex:1;min-width:80px" title="Shrink or enlarge everything on the page, so more rows and shapes fit">
+    <input id="scaleNum" type="number" step="0.05" class="act" style="width:4.8em" aria-label="Scale">
+    <span class="muted" id="fit"></span>
+  </div>
+  <div class="bar toolbar">
+    <button class="act" id="undo" title="Undo (Ctrl+Z)">Undo</button>
+    <button class="act" id="redo" title="Redo (Ctrl+Shift+Z or Ctrl+Y)">Redo</button>
+    <button class="act danger" id="clear" title="Remove every shape from the program">Clear</button>
+    <button class="act" id="open" title="Open a program SVG saved by this tool (or drop it on the page)">Import SVG&hellip;</button>
+    <button class="act" id="save" title="Download the whole program as one SVG (opens in Inkscape, and can be imported again)">Export SVG</button>
+    <button class="act" id="savePage" title="Download only the page shown as its own SVG">Page SVG</button>
+    <button class="act primary" id="print" title="Print the program, or choose “Save as PDF” in the print dialog">Print / PDF</button>
+    <label class="inline muted" title="Print the dotted guide lines too"><input id="printGuides" type="checkbox" checked> guides</label>
+    <input id="file" type="file" accept=".svg,image/svg+xml" hidden>
+  </div>
+  <div class="bar toolbar">
+    <span id="bin" title="Drop a shape here to remove it">&#128465; remove</span>
+    <button class="act" id="prev">&lsaquo;</button>
+    <span id="pageLabel" class="muted" title="Page"></span>
+    <button class="act" id="next">&rsaquo;</button>
+  </div>
+  <div id="preview"></div>
+  <div class="muted">Click a shape to select it: arrow keys move it, Delete removes it, <b>1</b> / <b>2</b> add text above / below it, <b>+</b> / <b>&minus;</b> widen / narrow the space to its right (narrowing stops where the outlines touch), <b>Enter</b> starts a new row after it (that row is centred), Esc deselects. Drag a box on empty page to select the shapes it touches (Shift/Ctrl adds). Shift+click selects a range, Ctrl+click adds one, Ctrl+A selects all: spacing, line break and Delete then apply to every selected shape, by the same amount. Drag a shape to reorder it, or drop it on the bin or off the page to remove it. Drag a library tile onto the page to insert it there. Paper, orientation and scale (shapes, lines, text and gaps) are set above the toolbar; a smaller scale fits more rows and shapes on a page.</div>
+  <div class="muted" id="out">Your program is kept in this browser automatically. Use Export SVG to save it as a file.</div>
+</section>
+<div id="printRoot" aria-hidden="true"></div>
+<script type="module" src="/src/ui/main.ts"></script>
+</body>
+</html>

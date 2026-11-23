@@ -1,0 +1,96 @@
+:root { --bg:#f6f5f2; --panel:#fff; --ink:#1c1c1c; --muted:#6b6b6b; --line:#d9d6cf; --accent:#2f6fdb; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg:#1b1b1d; --panel:#26262a; --ink:#ececec; --muted:#9a9a9f; --line:#3a3a40; --accent:#6ea2ff; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui, sans-serif;
+       display:grid; grid-template-columns: minmax(240px, 1fr) 8px var(--pane, 520px); height:100vh; }
+section { display:flex; flex-direction:column; min-height:0; padding:12px 16px; gap:10px; }
+#split { cursor:col-resize; background:var(--line); opacity:.5; touch-action:none; }
+#split:hover, #split:focus-visible, #split.active { opacity:1; background:var(--accent); outline:none; }
+body.resizing { cursor:col-resize; user-select:none; }
+input[type=search] { width:100%; padding:8px 10px; font:inherit; color:inherit; background:var(--panel);
+                     border:1px solid var(--line); border-radius:6px; }
+/* padding keeps the tiles' borders and focus outlines clear of the scroll container's clipping edge */
+#grid { flex:1; min-height:0; overflow:auto; display:grid; grid-template-columns:repeat(auto-fill, minmax(130px,1fr)); gap:8px; align-content:start; padding:4px; margin:0 -4px; }  /* the negative margin cancels the padding sideways, so the tiles line up with the filter row */
+:root { --control: 38px; }  /* height of the filter box, which the refresh button matches */
+.bar #q { width:auto; flex:1; min-width:0; height:var(--control); }
+#refresh { flex:none; width:var(--control); height:var(--control); padding:0; font-size:22px; line-height:1;
+           display:grid; place-items:center; }
+.ghost { position:fixed; z-index:50; width:110px; padding:4px; background:#fff; border:1px solid var(--accent); border-radius:6px;
+         opacity:.8; pointer-events:none; transform:translate(-50%,-50%); }
+.ghost svg { width:100%; height:64px; display:block; }
+.note-box { position:fixed; z-index:60; padding:6px 8px; font:13px/1.35 sans-serif; text-align:center; resize:vertical;
+            color:#000; background:#fffbe6; border:2px solid var(--accent); border-radius:6px; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+/* square tiles: the percentage padding gives the grid row its height, the content sits inside it */
+.tile { position:relative; display:block; height:0; padding:100% 0 0; min-width:0; background:#fff; color:#000;
+        border:1px solid var(--line); border-radius:8px; cursor:pointer; text-align:center; font:inherit; overflow:hidden; }
+.tile .in { position:absolute; inset:6px; display:flex; flex-direction:column; gap:4px; }
+.tile:hover, .tile:focus-visible { border-color:var(--accent); outline:2px solid var(--accent); outline-offset:-1px; }
+.tile svg { flex:1 1 0; min-height:0; width:100%; display:block; }  /* the drawing takes what the label leaves */
+.tile span { flex:none; font-size:12px; line-height:1.25; max-height:3.75em; overflow:hidden; }
+.bar { display:flex; gap:8px; align-items:center; }
+button.act { padding:6px 12px; font:inherit; color:inherit; background:var(--panel); border:1px solid var(--line);
+             border-radius:6px; cursor:pointer; }
+button.act:hover { border-color:var(--accent); }
+button.act:disabled { opacity:.45; cursor:default; }
+button.act:disabled:hover { border-color:var(--line); }
+button.act.danger { background:#c0392b; border-color:#c0392b; color:#fff; }
+button.act.danger:hover { background:#962d22; border-color:#962d22; }
+.toolbar { flex-wrap:wrap; row-gap:8px; gap:6px; }
+.toolbar button.act { padding:6px 9px; }
+#preview { flex:1; min-height:0; background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+#preview svg { width:100%; height:100%; display:block; touch-action:none; user-select:none; }
+#preview.outside { outline:3px solid #c0392b; outline-offset:-3px; }
+.hit { fill:transparent; pointer-events:all; cursor:grab; }
+.hit:hover { fill:rgba(47,111,219,.10); stroke:#2f6fdb; stroke-width:.3; }
+.hit.sel, .hit.sel:hover { fill:rgba(47,111,219,.18); stroke:#2f6fdb; stroke-width:.6; }
+.dragging .hit { cursor:grabbing; }
+.marquee { fill:rgba(47,111,219,.12); stroke:#2f6fdb; stroke-width:.3; stroke-dasharray:1.2 .8; pointer-events:none; }
+.btn { cursor:pointer; }
+.btn rect { fill:#2f6fdb; stroke:#fff; stroke-width:.15; }
+.btn:hover rect { fill:#1d4fa8; }
+.btn.del rect { fill:#c0392b; }
+.btn.del:hover rect { fill:#962d22; }
+.btn text { fill:#fff; text-anchor:middle; font-family:sans-serif; font-weight:bold; pointer-events:none; }
+.btn.on rect { fill:#1d4fa8; stroke:#fff; stroke-width:.4; }
+.btn.off { cursor:default; opacity:.35; }
+.btn.off:hover rect { fill:#2f6fdb; }
+/* the bin takes all the room between Open and the page selector */
+#bin { flex:1; min-width:0; align-self:stretch; display:flex; align-items:center; justify-content:center; padding:6px 12px;
+       border:1px dashed var(--line); border-radius:6px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#pageLabel { white-space:nowrap; }
+#bin { transition:background .12s, color .12s, border-color .12s, box-shadow .12s, transform .12s; }
+/* a shape is being dragged: the bin lights up ... */
+body.removable #bin { border-style:solid; border-color:#c0392b; color:#c0392b; background:rgba(192,57,43,.12);
+                      animation:bin-pulse 1s ease-in-out infinite; }
+/* ... and the pointer is over it: it lights up fully */
+body.removable #bin.hot { background:#c0392b; color:#fff; box-shadow:0 0 0 3px rgba(192,57,43,.4); transform:scale(1.03); animation:none; }
+@keyframes bin-pulse { 50% { box-shadow:0 0 0 3px rgba(192,57,43,.28); } }
+@media (prefers-reduced-motion: reduce) { body.removable #bin { animation:none; } }
+#warn { background:rgba(230,160,0,.15); border:1px solid #e6a000; border-radius:6px; padding:6px 10px; font-size:12px; }
+#fname { flex:1; min-width:0; padding:6px 10px; font:inherit; color:inherit; background:var(--panel); border:1px solid var(--line); border-radius:6px; }
+.muted { color:var(--muted); font-size:12px; }
+@media (max-width: 800px) { body { grid-template-columns:1fr; height:auto; } #split { display:none; } #preview { min-height:70vh; } }
+
+/* --- additions for the browser-only version --- */
+#libReset[hidden] { display:none; }
+.bar.lib { gap:6px; }
+.bar.lib .act { height:var(--control); white-space:nowrap; }
+label.inline { display:inline-flex; gap:4px; align-items:center; white-space:nowrap; }
+button.act.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+button.act.primary:hover { filter:brightness(.9); }
+.hint { font-size:12px; color:var(--muted); }
+body.dropping #grid, body.dropping #preview { outline:3px dashed var(--accent); outline-offset:-3px; }
+
+/* --- printing: only the sheets are shown, one per page, at their real size --- */
+#printRoot { display:none; }
+@media print {
+html, body { height:auto !important; background:#fff !important; }
+body { display:block !important; }
+body > :not(#printRoot) { display:none !important; }
+#printRoot { display:block; }
+#printRoot .sheet { break-after:page; page-break-after:always; overflow:hidden; background:#fff; }
+#printRoot .sheet:last-child { break-after:auto; page-break-after:auto; }
+#printRoot .sheet svg { display:block; }
+}
