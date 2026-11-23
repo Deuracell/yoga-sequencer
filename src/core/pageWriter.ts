@@ -19,7 +19,7 @@ export interface RenderedDocument {
   document: string;
   pages: number;
   /** A standalone SVG element showing one page; shapes carry data-index for the preview. */
-  pageView(page: number, withGuides?: boolean): SVGSVGElement;
+  pageView(page: number, withGuides?: boolean, onlyThisPage?: boolean): SVGSVGElement;
   /** One page as a stand-alone SVG file (nothing of the other pages, and no data for reopening). */
   pageFile(page: number): string;
 }
@@ -169,8 +169,16 @@ export function renderDocument(source: Element, placements: Placement[], drawn: 
   // from here on only the views are affected: lets the browser find each shape
   groups.forEach((group, index) => group.setAttribute("data-index", String(index))); // pages are in placement order
 
-  const pageView = (page: number, withGuides = true): SVGSVGElement => {
+  /** Remove everything that belongs to the other pages, which sit beside this one on the canvas. */
+  const dropOtherPages = (view: Element, page: number) => {
+    const onPage = (id: string | null, pattern: RegExp) => { const m = pattern.exec(id ?? ""); return !m || Number(m[1]) === page; };
+    for (const el of children(layerWithId(view, "layer1"))) if (!onPage(el.getAttribute("id"), /-p(\d+)n\d+$/)) el.remove();
+    for (const el of children(layerWithId(view, "layer2"))) if (!onPage(el.getAttribute("id"), /^reference-pg(\d+)$/)) el.remove();
+  };
+
+  const pageView = (page: number, withGuides = true, onlyThisPage = false): SVGSVGElement => {
     const view = root.cloneNode(true) as unknown as SVGSVGElement;
+    if (onlyThisPage) dropOtherPages(view, page);
     view.setAttribute("viewBox", `${page * step} 0 ${pageWidth(drawn)} ${pageHeight(drawn)}`);
     if (!withGuides) {
       for (const g of Array.from(view.querySelectorAll("g"))) if (labelOf(g) === REFERENCE_LABEL) g.remove();
@@ -181,11 +189,8 @@ export function renderDocument(source: Element, placements: Placement[], drawn: 
   return {
     document, pages, pageView,
     pageFile(page) {
-      const view = pageView(page);
+      const view = pageView(page, true, true);
       view.querySelectorAll("[data-index]").forEach((el) => el.removeAttribute("data-index"));
-      const onPage = (id: string | null, pattern: RegExp) => { const m = pattern.exec(id ?? ""); return !m || Number(m[1]) === page; };
-      for (const el of children(layerWithId(view, "layer1"))) if (!onPage(el.getAttribute("id"), /-p(\d+)n\d+$/)) el.remove();
-      for (const el of children(layerWithId(view, "layer2"))) if (!onPage(el.getAttribute("id"), /^reference-pg(\d+)$/)) el.remove();
       view.querySelectorAll("metadata, page").forEach((el) => el.remove());
       return serialize(view);
     },

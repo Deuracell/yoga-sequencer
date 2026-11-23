@@ -5,6 +5,8 @@ import { PAD, startDrag, startMarquee } from "./dragShape";
 import { layoutInfo, type LayoutItem } from "./layoutInfo";
 import { extendSelection, onSelection, pickedItems, ui } from "./state";
 
+const SHEET_MARGIN = 4; // mm of desk around the page in the preview
+
 export function renderPreview() {
   const { builder } = ui;
   ui.layout = layoutInfo(builder);
@@ -15,9 +17,14 @@ export function renderPreview() {
   ($("prev") as HTMLButtonElement).disabled = ui.page <= 0;
   ($("next") as HTMLButtonElement).disabled = ui.page >= builder.pages - 1;
 
-  const svg = builder.render.pageView(ui.page);
+  const svg = builder.render.pageView(ui.page, true, true);
   svg.removeAttribute("width");
   svg.removeAttribute("height");
+  const { pageStep, pageWidth, pageHeight } = ui.layout;
+  const left = ui.page * pageStep;
+  // a little desk around the sheet, so its edge is visible (and so is "off the page" when dragging)
+  svg.setAttribute("viewBox", `${left - SHEET_MARGIN} ${-SHEET_MARGIN} ${pageWidth + 2 * SHEET_MARGIN} ${pageHeight + 2 * SHEET_MARGIN}`);
+  svg.insertBefore(svgEl("rect", { class: "sheet", x: left, y: 0, width: pageWidth, height: pageHeight }), svg.firstChild);
   const host = $("preview");
   host.replaceChildren(document.importNode(svg, true));
   ui.svg = host.querySelector("svg");
